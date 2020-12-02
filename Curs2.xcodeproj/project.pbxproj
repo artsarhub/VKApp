@@ -9,21 +9,21 @@
 /* Begin PBXBuildFile section */
 		ACA8029A257664CC00DC648A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA80299257664CC00DC648A /* AppDelegate.swift */; };
 		ACA8029C257664CC00DC648A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA8029B257664CC00DC648A /* SceneDelegate.swift */; };
-		ACA8029E257664CC00DC648A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA8029D257664CC00DC648A /* ViewController.swift */; };
 		ACA802A1257664CC00DC648A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACA8029F257664CC00DC648A /* Main.storyboard */; };
 		ACA802A3257664CD00DC648A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACA802A2257664CD00DC648A /* Assets.xcassets */; };
 		ACA802A6257664CD00DC648A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACA802A4257664CD00DC648A /* LaunchScreen.storyboard */; };
+		ACA802AF2576737D00DC648A /* LoginFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA802AE2576737D00DC648A /* LoginFormController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		ACA80296257664CC00DC648A /* Curs2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Curs2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACA80299257664CC00DC648A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACA8029B257664CC00DC648A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		ACA8029D257664CC00DC648A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		ACA802A0257664CC00DC648A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ACA802A2257664CD00DC648A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACA802A5257664CD00DC648A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACA802A7257664CD00DC648A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACA802AE2576737D00DC648A /* LoginFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +56,9 @@
 		ACA80298257664CC00DC648A /* Curs2 */ = {
 			isa = PBXGroup;
 			children = (
+				ACA802AE2576737D00DC648A /* LoginFormController.swift */,
 				ACA80299257664CC00DC648A /* AppDelegate.swift */,
 				ACA8029B257664CC00DC648A /* SceneDelegate.swift */,
-				ACA8029D257664CC00DC648A /* ViewController.swift */,
 				ACA8029F257664CC00DC648A /* Main.storyboard */,
 				ACA802A2257664CD00DC648A /* Assets.xcassets */,
 				ACA802A4257664CD00DC648A /* LaunchScreen.storyboard */,
@@ -137,7 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACA8029E257664CC00DC648A /* ViewController.swift in Sources */,
+				ACA802AF2576737D00DC648A /* LoginFormController.swift in Sources */,
 				ACA8029A257664CC00DC648A /* AppDelegate.swift in Sources */,
 				ACA8029C257664CC00DC648A /* SceneDelegate.swift in Sources */,
 			);
