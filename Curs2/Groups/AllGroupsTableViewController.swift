@@ -10,9 +10,9 @@ import UIKit
 class AllGroupsTableViewController: UITableViewController {
     
     var allGroups: [Group] = [
-        Group("Новости Москвы", UIImage(named: "moscow")!),
-        Group("Я - программист", UIImage(named: "proger")!),
-        Group("Bad Comedian", UIImage(named: "bad")!),
+        Group(name: "Новости Москвы", logoImage: UIImage(named: "moscow")!),
+        Group(name: "Я - программист", logoImage: UIImage(named: "proger")!),
+        Group(name: "Bad Comedian", logoImage: UIImage(named: "bad")!),
     ]
 
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class AllGroupsTableViewController: UITableViewController {
         let group = self.allGroups[indexPath.row]
         cell.nameLabel.text = group.name
         cell.logoImageView.image = group.logoImage
-        cell.logoImageView.makeRounded()
+        cell.logoImageView.makeCircle()
 
         return cell
     }

@@ -10,13 +10,15 @@ import UIKit
 class FriendsTableViewController: UITableViewController {
     
     var friends: [User] = [
-        User("Анна", UIImage(named: "anna")!),
-        User("Александр", UIImage(named: "alex")!),
-        User("Никита", UIImage(named: "nikita")!),
+        User(name: "Анна", avatar: UIImage(named: "anna")!),
+        User(name: "Александр", avatar: UIImage(named: "alex")!),
+        User(name: "Никита", avatar: UIImage(named: "nikita")!),
     ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.rowHeight = 60
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,8 +30,7 @@ class FriendsTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as? FriendCell
         else { return UITableViewCell() }
         cell.nameLabel.text = self.friends[indexPath.row].name
-        cell.avatarImageView.image = self.friends[indexPath.row].avatar
-        cell.avatarImageView.makeRounded()
+        cell.avatarView.image = self.friends[indexPath.row].avatar
         
         return cell
     }
@@ -42,6 +43,7 @@ class FriendsTableViewController: UITableViewController {
         
         let user = self.friends[indexPath.row]
         controller.userImages.append(user.avatar)
+        controller.userAvatar = user.avatar
     }
 
     /*
@@ -79,13 +81,4 @@ class FriendsTableViewController: UITableViewController {
     }
     */
 
-}
-
-extension UIImageView {
-
-    func makeRounded() {
-
-        self.layer.cornerRadius = self.frame.size.width / 2;
-        self.clipsToBounds = true;
-    }
 }

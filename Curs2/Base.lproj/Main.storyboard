@@ -202,30 +202,56 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" textLabel="BVz-88-Xy5" imageView="0qL-O9-AZ7" style="IBUITableViewCellStyleDefault" id="RKi-6d-Vew" customClass="FriendCell" customModule="Curs2" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" id="RKi-6d-Vew" customClass="FriendCell" customModule="Curs2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="428" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RKi-6d-Vew" id="yVS-qH-D4g">
                                     <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Какой-то друг" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BVz-88-Xy5">
-                                            <rect key="frame" x="79" y="0.0" width="329" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOw-wg-hF4">
+                                            <rect key="frame" x="20" y="11.666666666666666" width="338" height="20.333333333333336"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="alex" id="0qL-O9-AZ7">
-                                            <rect key="frame" x="20" y="0.0" width="44" height="43.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
-                                        </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1DQ-yw-L4P" customClass="Avatar" customModule="Curs2" customModuleProvider="target">
+                                            <rect key="frame" x="358" y="-3.3333333333333321" width="50" height="50.333333333333329"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="Avj-NJ-0WK"/>
+                                                <constraint firstAttribute="width" secondItem="1DQ-yw-L4P" secondAttribute="height" multiplier="1:1" id="Pvn-ko-98J"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                    <color key="value" systemColor="labelColor"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                    <real key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacityPercent">
+                                                    <real key="value" value="100"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                    <size key="value" width="0.0" height="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="VOw-wg-hF4" firstAttribute="leading" secondItem="yVS-qH-D4g" secondAttribute="leading" constant="20" id="BPh-qr-yl2"/>
+                                        <constraint firstItem="VOw-wg-hF4" firstAttribute="centerY" secondItem="yVS-qH-D4g" secondAttribute="centerY" id="QPU-uq-7lR"/>
+                                        <constraint firstItem="1DQ-yw-L4P" firstAttribute="leading" secondItem="VOw-wg-hF4" secondAttribute="trailing" id="b9B-s9-pti"/>
+                                        <constraint firstAttribute="trailing" secondItem="1DQ-yw-L4P" secondAttribute="trailing" constant="20" id="jsT-DZ-7Ep"/>
+                                        <constraint firstItem="VOw-wg-hF4" firstAttribute="centerY" secondItem="1DQ-yw-L4P" secondAttribute="centerY" id="xF6-ok-cMD"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstItem="VOw-wg-hF4" firstAttribute="height" secondItem="RKi-6d-Vew" secondAttribute="height" multiplier="0.465649" id="KRz-aP-JCs"/>
+                                </constraints>
                                 <connections>
-                                    <outlet property="avatarImageView" destination="0qL-O9-AZ7" id="AhN-JQ-0S6"/>
-                                    <outlet property="nameLabel" destination="BVz-88-Xy5" id="Eay-l9-TAx"/>
+                                    <outlet property="avatarView" destination="1DQ-yw-L4P" id="jbO-el-ClC"/>
+                                    <outlet property="nameLabel" destination="VOw-wg-hF4" id="2I0-BS-hbZ"/>
                                     <segue destination="NMF-Vf-R2l" kind="show" identifier="showUser" id="Msd-78-ZdN"/>
                                 </connections>
                             </tableViewCell>
@@ -241,7 +267,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X5J-uf-4uU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2731" y="-241"/>
+            <point key="canvasLocation" x="2730.8411214953271" y="-241.03671706263501"/>
         </scene>
         <!--Friend Collection View Controller-->
         <scene sceneID="TJk-77-00l">
@@ -259,28 +285,43 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="userCell" id="HxV-qS-cbt" customClass="FriendCollectionViewCell" customModule="Curs2" customModuleProvider="target">
-                                <rect key="frame" x="43" y="0.0" width="342" height="319"/>
+                                <rect key="frame" x="54" y="0.0" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bEb-BI-BlZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="319"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alex" translatesAutoresizingMaskIntoConstraints="NO" id="Vc5-PQ-mgU">
-                                            <rect key="frame" x="46" y="34.666666666666657" width="250" height="249.99999999999997"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNr-ku-GjG" customClass="Avatar" customModule="Curs2" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="20" width="280" height="280"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="250" id="BHo-6k-ytG"/>
-                                                <constraint firstAttribute="width" secondItem="Vc5-PQ-mgU" secondAttribute="height" multiplier="1:1" id="C2c-Ig-D3I"/>
+                                                <constraint firstAttribute="width" secondItem="dNr-ku-GjG" secondAttribute="height" multiplier="1:1" id="G0L-Nw-vLU"/>
+                                                <constraint firstAttribute="width" constant="280" id="yCe-MY-4qT"/>
                                             </constraints>
-                                        </imageView>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                    <color key="value" systemColor="labelColor"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                    <size key="value" width="0.0" height="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacityPercent">
+                                                    <real key="value" value="100"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Vc5-PQ-mgU" firstAttribute="centerX" secondItem="bEb-BI-BlZ" secondAttribute="centerX" id="YrE-gA-nRT"/>
-                                        <constraint firstItem="Vc5-PQ-mgU" firstAttribute="centerY" secondItem="bEb-BI-BlZ" secondAttribute="centerY" id="jmK-W4-Qll"/>
+                                        <constraint firstItem="dNr-ku-GjG" firstAttribute="centerY" secondItem="bEb-BI-BlZ" secondAttribute="centerY" id="Dyh-zJ-H7Z"/>
+                                        <constraint firstItem="dNr-ku-GjG" firstAttribute="centerX" secondItem="bEb-BI-BlZ" secondAttribute="centerX" id="qm9-LN-cio"/>
                                     </constraints>
                                 </collectionViewCellContentView>
-                                <size key="customSize" width="342" height="319"/>
+                                <size key="customSize" width="320" height="320"/>
                                 <connections>
-                                    <outlet property="userAvatar" destination="Vc5-PQ-mgU" id="fy5-Z0-Sjw"/>
+                                    <outlet property="avatar" destination="dNr-ku-GjG" id="3mq-Yr-hmI"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -350,10 +391,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="alex" width="720" height="720"/>
         <image name="moscow" width="400" height="400"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

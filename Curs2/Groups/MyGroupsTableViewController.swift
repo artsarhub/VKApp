@@ -39,7 +39,7 @@ class MyGroupsTableViewController: UITableViewController {
         let group = self.myGroups[indexPath.row]
         cell.nameLabel.text = group.name
         cell.logoImageView.image = group.logoImage
-        cell.logoImageView.makeRounded()
+        cell.logoImageView.makeCircle()
 
         return cell
     }
