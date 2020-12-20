@@ -17,6 +17,8 @@
 		ACA802A3257664CD00DC648A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACA802A2257664CD00DC648A /* Assets.xcassets */; };
 		ACA802A6257664CD00DC648A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACA802A4257664CD00DC648A /* LaunchScreen.storyboard */; };
 		ACA802AF2576737D00DC648A /* LoginFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA802AE2576737D00DC648A /* LoginFormController.swift */; };
+		ACABA142258F5A99009D28BE /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABA141258F5A99009D28BE /* LikeControl.swift */; };
+		ACABA146258FBB8E009D28BE /* FriendsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABA145258FBB8E009D28BE /* FriendsSectionHeader.swift */; };
 		ACB0B2382586821A00838F34 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB0B2372586821A00838F34 /* Extensions.swift */; };
 		ACD311D125812B7D00A31DB9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD311D025812B7D00A31DB9 /* User.swift */; };
 		ACD311D525812B9400A31DB9 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD311D425812B9400A31DB9 /* Group.swift */; };
@@ -39,6 +41,8 @@
 		ACA802A5257664CD00DC648A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACA802A7257664CD00DC648A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACA802AE2576737D00DC648A /* LoginFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormController.swift; sourceTree = "<group>"; };
+		ACABA141258F5A99009D28BE /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
+		ACABA145258FBB8E009D28BE /* FriendsSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsSectionHeader.swift; sourceTree = "<group>"; };
 		ACB0B2372586821A00838F34 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		ACD311D025812B7D00A31DB9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ACD311D425812B9400A31DB9 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -66,6 +70,7 @@
 				AC2E527A257FFD8F000F4B7D /* FriendCell.swift */,
 				AC2E528125800AE5000F4B7D /* FriendCollectionViewController.swift */,
 				ACD311E22581317E00A31DB9 /* FriendCollectionViewCell.swift */,
+				ACABA145258FBB8E009D28BE /* FriendsSectionHeader.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -99,6 +104,7 @@
 		ACA80298257664CC00DC648A /* Curs2 */ = {
 			isa = PBXGroup;
 			children = (
+				ACABA140258F59D0009D28BE /* Controls */,
 				ACD311CF25812AEF00A31DB9 /* Model */,
 				AC2E5275257FFB4E000F4B7D /* Groups */,
 				AC2E5274257FFB36000F4B7D /* Friends */,
@@ -111,6 +117,14 @@
 				ACA802A7257664CD00DC648A /* Info.plist */,
 			);
 			path = Curs2;
+			sourceTree = "<group>";
+		};
+		ACABA140258F59D0009D28BE /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				ACABA141258F5A99009D28BE /* LikeControl.swift */,
+			);
+			path = Controls;
 			sourceTree = "<group>";
 		};
 		ACD311CF25812AEF00A31DB9 /* Model */ = {
@@ -201,12 +215,14 @@
 				AC2E5278257FFD29000F4B7D /* FriendsTableViewController.swift in Sources */,
 				ACD311DF25812DA700A31DB9 /* AllGroupsTableViewController.swift in Sources */,
 				ACD311D525812B9400A31DB9 /* Group.swift in Sources */,
+				ACABA142258F5A99009D28BE /* LikeControl.swift in Sources */,
 				ACD311DB25812D7800A31DB9 /* GroupCell.swift in Sources */,
 				AC550D482583DE4F00255250 /* Avatar.swift in Sources */,
 				ACA8029C257664CC00DC648A /* SceneDelegate.swift in Sources */,
 				AC2E528225800AE5000F4B7D /* FriendCollectionViewController.swift in Sources */,
 				AC2E527B257FFD8F000F4B7D /* FriendCell.swift in Sources */,
 				ACD311D125812B7D00A31DB9 /* User.swift in Sources */,
+				ACABA146258FBB8E009D28BE /* FriendsSectionHeader.swift in Sources */,
 				ACB0B2382586821A00838F34 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

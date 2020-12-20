@@ -13,6 +13,11 @@ class LoginFormController: UIViewController {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
     
+    @IBAction func logout(_ segue: UIStoryboardSegue) {
+        self.loginTF.text = ""
+        self.passwordTF.text = ""
+    }
+    
     private func checkUser() -> Bool {
         guard let username = self.loginTF.text,
               let password = self.passwordTF.text

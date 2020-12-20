@@ -14,25 +14,48 @@ class FriendsTableViewController: UITableViewController {
         User(name: "Александр", avatar: UIImage(named: "alex")!),
         User(name: "Никита", avatar: UIImage(named: "nikita")!),
     ]
+    
+    var friendsDict: [Character: [User]] = [:]
+    var firstLetters = [Character]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.rowHeight = 60
+        
+        self.fillFriendsDict()
+        tableView.register(FriendsSectionHeader.self, forHeaderFooterViewReuseIdentifier: "FriendsSectionHeader")
     }
-
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        self.firstLetters.count
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.friends.count
+        let nameFirstLetter = self.firstLetters[section]
+        return self.friendsDict[nameFirstLetter]?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as? FriendCell
         else { return UITableViewCell() }
-        cell.nameLabel.text = self.friends[indexPath.row].name
-        cell.avatarView.image = self.friends[indexPath.row].avatar
+        let firstLetter = self.firstLetters[indexPath.section]
+        if let users = self.friendsDict[firstLetter] {
+            cell.nameLabel.text = users[indexPath.row].name
+            cell.avatarView.image = users[indexPath.row].avatar
+        }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let sectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "FriendsSectionHeader") as? FriendsSectionHeader else { return nil }
+        sectionHeader.textLabel?.text = String(self.firstLetters[section])
+        return sectionHeader
+    }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        self.firstLetters.map{String($0)}
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -44,6 +67,20 @@ class FriendsTableViewController: UITableViewController {
         let user = self.friends[indexPath.row]
         controller.userImages.append(user.avatar)
         controller.userAvatar = user.avatar
+    }
+    
+    private func fillFriendsDict() {
+        for user in self.friends {
+            let dictKey = user.name.first!
+            if var users = self.friendsDict[dictKey] {
+                users.append(user)
+                self.friendsDict[dictKey] = users
+            } else {
+                self.firstLetters.append(dictKey)
+                self.friendsDict[dictKey] = [user]
+            }
+        }
+        self.firstLetters.sort()
     }
 
     /*
