@@ -17,6 +17,7 @@ class AllGroupsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 60
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,8 +31,7 @@ class AllGroupsTableViewController: UITableViewController {
         else { return UITableViewCell() }
         let group = self.allGroups[indexPath.row]
         cell.nameLabel.text = group.name
-        cell.logoImageView.image = group.logoImage
-        cell.logoImageView.makeCircle()
+        cell.avatar.image = group.logoImage
 
         return cell
     }
