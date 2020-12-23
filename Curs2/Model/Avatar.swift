@@ -37,8 +37,6 @@ import UIKit
         
         guard let image = self.image else { return }
         
-        print(image)
-        
         let imageView = self.getImageView(rect, image)
         self.addSubview(imageView)
         

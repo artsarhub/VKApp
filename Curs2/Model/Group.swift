@@ -11,3 +11,5 @@ struct Group {
     var name: String
     var logoImage: UIImage
 }
+
+extension Group: Equatable {}
