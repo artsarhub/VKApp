@@ -49,10 +49,24 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" textContentType="username"/>
                                     </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbM-hh-M4P" customClass="LoadingDots" customModule="Curs2" customModuleProvider="target">
+                                        <rect key="frame" x="150" y="554" width="128" height="35"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="AdM-7i-2GR"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="dotRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="kl7-Gq-mSQ" firstAttribute="top" secondItem="XRM-gI-OVb" secondAttribute="top" constant="100" id="32y-ax-FgU"/>
                                     <constraint firstItem="kl7-Gq-mSQ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kbB-y0-Iag" secondAttribute="trailing" id="3W8-L8-W8q"/>
+                                    <constraint firstItem="BbM-hh-M4P" firstAttribute="top" secondItem="kbB-y0-Iag" secondAttribute="bottom" constant="50" id="3bS-si-2Kc"/>
+                                    <constraint firstItem="BbM-hh-M4P" firstAttribute="leading" secondItem="Vn0-a5-Sf9" secondAttribute="leading" constant="150" id="52P-rv-cOZ"/>
                                     <constraint firstItem="kbB-y0-Iag" firstAttribute="top" secondItem="gQM-QP-eLy" secondAttribute="bottom" constant="10" id="7bO-P3-fob"/>
                                     <constraint firstItem="gQM-QP-eLy" firstAttribute="leading" secondItem="XRM-gI-OVb" secondAttribute="leading" constant="30" id="R1r-H0-m59"/>
                                     <constraint firstItem="kl7-Gq-mSQ" firstAttribute="centerX" secondItem="XRM-gI-OVb" secondAttribute="centerX" id="UgK-Ig-SFA"/>
@@ -61,6 +75,7 @@
                                     <constraint firstAttribute="trailing" secondItem="kbB-y0-Iag" secondAttribute="trailing" constant="30" id="bcR-FJ-5fu"/>
                                     <constraint firstItem="kl7-Gq-mSQ" firstAttribute="centerX" secondItem="gQM-QP-eLy" secondAttribute="centerX" id="dUm-zi-M8c"/>
                                     <constraint firstItem="JOB-PN-6ES" firstAttribute="centerX" secondItem="kbB-y0-Iag" secondAttribute="centerX" id="j5O-vh-0p1"/>
+                                    <constraint firstItem="Vn0-a5-Sf9" firstAttribute="trailing" secondItem="BbM-hh-M4P" secondAttribute="trailing" constant="150" id="jab-Gt-cBj"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kl7-Gq-mSQ" secondAttribute="trailing" id="l7y-0m-Mhy"/>
                                     <constraint firstItem="kl7-Gq-mSQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Vn0-a5-Sf9" secondAttribute="leading" id="lEh-8a-ltC"/>
                                     <constraint firstItem="Vn0-a5-Sf9" firstAttribute="bottom" secondItem="JOB-PN-6ES" secondAttribute="bottom" constant="20" id="qAj-Wr-R8O"/>
@@ -83,6 +98,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Dd5-FL-nhi"/>
                     <connections>
+                        <outlet property="loadingDots" destination="BbM-hh-M4P" id="azq-kQ-scL"/>
                         <outlet property="loginBtn" destination="JOB-PN-6ES" id="eef-H9-sgv"/>
                         <outlet property="loginTF" destination="gQM-QP-eLy" id="qiE-Ix-hSy"/>
                         <outlet property="passwordTF" destination="kbB-y0-Iag" id="a0m-E0-q0b"/>
@@ -90,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-79" y="62"/>
+            <point key="canvasLocation" x="-79.906542056074755" y="61.555075593952488"/>
         </scene>
         <!--Мои группы-->
         <scene sceneID="8dV-ZZ-9ry">
@@ -338,7 +354,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="140" id="R2c-jU-cb8"/>
                                                     </constraints>
-                                                    <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

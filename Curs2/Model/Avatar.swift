@@ -32,6 +32,16 @@ import UIKit
         }
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+    }
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
@@ -63,5 +73,15 @@ import UIKit
         shadowLayer.shadowRadius = self.shadowRadius
         shadowView.layer.insertSublayer(shadowLayer, at: 0)
         return shadowView
+    }
+    
+    @objc func handleTap() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            self.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
+        }) { _ in
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                self.transform = CGAffineTransform.identity
+            }, completion: nil)
+        }
     }
 }

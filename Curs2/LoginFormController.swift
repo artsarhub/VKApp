@@ -12,6 +12,7 @@ class LoginFormController: UIViewController {
     @IBOutlet weak var loginTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var loadingDots: LoadingDots!
     
     @IBAction func logout(_ segue: UIStoryboardSegue) {
         self.loginTF.text = ""
