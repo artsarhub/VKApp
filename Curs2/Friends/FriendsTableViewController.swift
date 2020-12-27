@@ -9,11 +9,21 @@ import UIKit
 
 class FriendsTableViewController: UITableViewController {
     
+    @IBOutlet weak var serachBar: UISearchBar!
+    
     var friends: [User] = [
         User(name: "Анна", avatar: UIImage(named: "anna")!),
         User(name: "Александр", avatar: UIImage(named: "alex")!),
         User(name: "Никита", avatar: UIImage(named: "nikita")!),
     ]
+    var filteredFriends = [User]() {
+        didSet {
+            self.friendsDict.removeAll()
+            self.firstLetters.removeAll()
+            self.fillFriendsDict()
+            tableView.reloadData()
+        }
+    }
     
     var friendsDict: [Character: [User]] = [:]
     var firstLetters = [Character]()
@@ -21,9 +31,9 @@ class FriendsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 60
-        
-        self.fillFriendsDict()
         tableView.register(FriendsSectionHeader.self, forHeaderFooterViewReuseIdentifier: "FriendsSectionHeader")
+        
+        self.filteredFriends = self.friends
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,6 +61,7 @@ class FriendsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let sectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "FriendsSectionHeader") as? FriendsSectionHeader else { return nil }
         sectionHeader.textLabel?.text = String(self.firstLetters[section])
+        sectionHeader.contentView.backgroundColor = .systemGray
         return sectionHeader
     }
     
@@ -64,13 +75,13 @@ class FriendsTableViewController: UITableViewController {
             let indexPath = tableView.indexPathForSelectedRow
         else { return }
         
-        let user = self.friends[indexPath.row]
+        let user = self.filteredFriends[indexPath.row]
         controller.userImages.append(user.avatar)
         controller.userAvatar = user.avatar
     }
     
     private func fillFriendsDict() {
-        for user in self.friends {
+        for user in self.filteredFriends {
             let dictKey = user.name.first!
             if var users = self.friendsDict[dictKey] {
                 users.append(user)
@@ -118,4 +129,19 @@ class FriendsTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension FriendsTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterFriends(with: searchText)
+    }
+    
+    fileprivate func filterFriends(with text: String) {
+        if text.isEmpty {
+            self.filteredFriends = friends
+            return
+        }
+        
+        self.filteredFriends = self.friends.filter {$0.name.lowercased().contains(text.lowercased())}
+    }
 }
