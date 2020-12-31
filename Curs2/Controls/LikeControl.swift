@@ -18,6 +18,11 @@ class LikeControl: UIControl {
     var likesCount: Int = 0 {
         didSet {
             self.likeButton.setTitle("\(self.likesCount)", for: .normal)
+            UIView.transition(with: self.likeButton,
+                              duration: 0.2,
+                              options: [.transitionFlipFromBottom]) {
+                self.likeButton.setTitle("\(self.likesCount)", for: .normal)
+            }
             let likeImage = self.isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
             let textColor = self.isLiked ? UIColor.red : UIColor.black
             self.likeButton.setImage(likeImage, for: .normal)

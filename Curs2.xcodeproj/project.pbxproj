@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC2164FC25972B8000E0B2BF /* LoadingDots.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2164FB25972B8000E0B2BF /* LoadingDots.swift */; };
 		AC2E5278257FFD29000F4B7D /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2E5277257FFD29000F4B7D /* FriendsTableViewController.swift */; };
 		AC2E527B257FFD8F000F4B7D /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2E527A257FFD8F000F4B7D /* FriendCell.swift */; };
 		AC2E528225800AE5000F4B7D /* FriendCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2E528125800AE5000F4B7D /* FriendCollectionViewController.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC2164FB25972B8000E0B2BF /* LoadingDots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDots.swift; sourceTree = "<group>"; };
 		AC2E5277257FFD29000F4B7D /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		AC2E527A257FFD8F000F4B7D /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		AC2E528125800AE5000F4B7D /* FriendCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				ACA802A2257664CD00DC648A /* Assets.xcassets */,
 				ACA802A4257664CD00DC648A /* LaunchScreen.storyboard */,
 				ACA802A7257664CD00DC648A /* Info.plist */,
+				AC2164FB25972B8000E0B2BF /* LoadingDots.swift */,
 			);
 			path = Curs2;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				ACA802AF2576737D00DC648A /* LoginFormController.swift in Sources */,
 				ACD311D825812D4F00A31DB9 /* MyGroupsTableViewController.swift in Sources */,
 				AC87B7E425939E5A0057DD1F /* NewsTableViewController.swift in Sources */,
+				AC2164FC25972B8000E0B2BF /* LoadingDots.swift in Sources */,
 				ACA8029A257664CC00DC648A /* AppDelegate.swift in Sources */,
 				AC2E5278257FFD29000F4B7D /* FriendsTableViewController.swift in Sources */,
 				AC87B7EB2593A1100057DD1F /* News.swift in Sources */,
