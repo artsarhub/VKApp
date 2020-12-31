@@ -205,7 +205,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afR-PI-Krm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="BxQ-ch-iIE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2948" y="718"/>
+            <point key="canvasLocation" x="2947" y="763"/>
         </scene>
         <!--All Groups Table View Controller-->
         <scene sceneID="bCG-Y6-Fc7">
@@ -267,7 +267,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="20M-VP-Vh3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="uVy-0S-Z9a" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3837" y="718"/>
+            <point key="canvasLocation" x="3837" y="763"/>
         </scene>
         <!--Новости-->
         <scene sceneID="ppq-x7-bga">
@@ -580,7 +580,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X5J-uf-4uU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="cMd-qO-zNY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2948" y="62"/>
+            <point key="canvasLocation" x="2947" y="62"/>
         </scene>
         <!--Friend Collection View Controller-->
         <scene sceneID="TJk-77-00l">
@@ -663,6 +663,7 @@
                                 <connections>
                                     <outlet property="avatar" destination="dNr-ku-GjG" id="3mq-Yr-hmI"/>
                                     <outlet property="likeControl" destination="ebP-te-hSK" id="vvM-Cz-eBu"/>
+                                    <segue destination="4gx-2m-1wn" kind="presentation" identifier="ShowPhoto" id="hFx-sM-C4m"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -676,6 +677,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gho-EH-Voc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3837" y="62"/>
+        </scene>
+        <!--Full Photo View Controller-->
+        <scene sceneID="yec-3e-fD7">
+            <objects>
+                <viewController id="4gx-2m-1wn" customClass="FullPhotoViewController" customModule="Curs2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WAb-S5-eoE">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WXP-HD-qdA">
+                                <rect key="frame" x="138" y="236" width="153" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Xx-6m-8vS">
+                                <rect key="frame" x="277" y="372" width="151" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dLb-k7-evC">
+                                <rect key="frame" x="0.0" y="372" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Q1j-p3-u9q"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BD0-I2-a9Y"/>
+                    <connections>
+                        <outlet property="imageView1" destination="WXP-HD-qdA" id="9Mp-1A-Ftm"/>
+                        <outlet property="imageView2" destination="6Xx-6m-8vS" id="VYF-7a-rgE"/>
+                        <outlet property="imageView3" destination="dLb-k7-evC" id="Ppw-hv-BHU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cEs-vt-5pS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4739.7196261682238" y="61.555075593952488"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="fTw-zs-ACG">
@@ -712,7 +748,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i8b-mV-i7h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1971" y="718"/>
+            <point key="canvasLocation" x="1970" y="763"/>
         </scene>
         <!--Item-->
         <scene sceneID="FzK-gq-cbA">
@@ -729,7 +765,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gcH-YC-cZS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1971" y="62"/>
+            <point key="canvasLocation" x="1970" y="62"/>
         </scene>
     </scenes>
     <resources>
