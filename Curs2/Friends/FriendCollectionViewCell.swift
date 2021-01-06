@@ -12,4 +12,6 @@ class FriendCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var avatar: Avatar!
     @IBOutlet weak var likeControl: LikeControl!
     
+    var user: User?
+    
 }

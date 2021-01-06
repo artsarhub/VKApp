@@ -30,6 +30,7 @@
 		ACD311DB25812D7800A31DB9 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD311DA25812D7800A31DB9 /* GroupCell.swift */; };
 		ACD311DF25812DA700A31DB9 /* AllGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD311DE25812DA700A31DB9 /* AllGroupsTableViewController.swift */; };
 		ACD311E32581317E00A31DB9 /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD311E22581317E00A31DB9 /* FriendCollectionViewCell.swift */; };
+		ACE16402259DC51100703581 /* FullPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE16401259DC51100703581 /* FullPhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		ACD311DA25812D7800A31DB9 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		ACD311DE25812DA700A31DB9 /* AllGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsTableViewController.swift; sourceTree = "<group>"; };
 		ACD311E22581317E00A31DB9 /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
+		ACE16401259DC51100703581 /* FullPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				AC2E528125800AE5000F4B7D /* FriendCollectionViewController.swift */,
 				ACD311E22581317E00A31DB9 /* FriendCollectionViewCell.swift */,
 				ACABA145258FBB8E009D28BE /* FriendsSectionHeader.swift */,
+				ACE16401259DC51100703581 /* FullPhotoViewController.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				ACD311D525812B9400A31DB9 /* Group.swift in Sources */,
 				AC87B7E825939E890057DD1F /* NewsTableViewCell.swift in Sources */,
 				ACABA142258F5A99009D28BE /* LikeControl.swift in Sources */,
+				ACE16402259DC51100703581 /* FullPhotoViewController.swift in Sources */,
 				ACD311DB25812D7800A31DB9 /* GroupCell.swift in Sources */,
 				AC550D482583DE4F00255250 /* Avatar.swift in Sources */,
 				ACA8029C257664CC00DC648A /* SceneDelegate.swift in Sources */,

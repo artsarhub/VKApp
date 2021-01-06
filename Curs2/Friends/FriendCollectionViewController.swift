@@ -16,15 +16,20 @@ class FriendCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        guard
+            segue.identifier == "ShowPhoto",
+            let controller = segue.destination as? FullPhotoViewController,
+            let cell = sender as? FriendCollectionViewCell,
+            let imageIdexPath = self.collectionView.indexPath(for: cell)
+        else { return }
+        
+        controller.album = self.userImages
+        controller.index = imageIdexPath.row
     }
-    */
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
@@ -33,11 +38,12 @@ class FriendCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userCell", for: indexPath) as? FriendCollectionViewCell,
-            let avatar = self.userAvatar
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userCell", for: indexPath) as? FriendCollectionViewCell
         else { return UICollectionViewCell() }
         
-        cell.avatar.image = avatar
+        let img = self.userImages[indexPath.row]
+        
+        cell.avatar.image = img
         
         return cell
     }

@@ -12,9 +12,15 @@ class FriendsTableViewController: UITableViewController {
     @IBOutlet weak var serachBar: UISearchBar!
     
     var friends: [User] = [
-        User(name: "Анна", avatar: UIImage(named: "anna")!),
-        User(name: "Александр", avatar: UIImage(named: "alex")!),
-        User(name: "Никита", avatar: UIImage(named: "nikita")!),
+        User(name: "Анна",
+             avatar: UIImage(named: "anna")!,
+             album: [UIImage(named: "anna")!, UIImage(named: "alex")!, UIImage(named: "nikita")!]),
+        User(name: "Александр",
+             avatar: UIImage(named: "alex")!,
+             album: [UIImage(named: "anna")!, UIImage(named: "alex")!, UIImage(named: "nikita")!]),
+        User(name: "Никита",
+             avatar: UIImage(named: "nikita")!,
+             album: [UIImage(named: "anna")!, UIImage(named: "alex")!, UIImage(named: "nikita")!]),
     ]
     var filteredFriends = [User]() {
         didSet {
@@ -72,12 +78,13 @@ class FriendsTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard
+            segue.identifier == "showUser",
             let controller = segue.destination as? FriendCollectionViewController,
             let indexPath = tableView.indexPathForSelectedRow
         else { return }
         
         let user = self.filteredFriends[indexPath.row]
-        controller.userImages.append(user.avatar)
+        controller.userImages = user.album //.append(user.avatar)
         controller.userAvatar = user.avatar
     }
     
