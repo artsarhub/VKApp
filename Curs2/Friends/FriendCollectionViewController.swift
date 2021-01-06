@@ -9,6 +9,8 @@ import UIKit
 
 class FriendCollectionViewController: UICollectionViewController {
     
+    @IBAction func closeFullPhotoView(_ unwindSegue: UIStoryboardSegue) {}
+    
     var userImages = [UIImage]()
     var userAvatar: UIImage?
     
@@ -43,7 +45,7 @@ class FriendCollectionViewController: UICollectionViewController {
         
         let img = self.userImages[indexPath.row]
         
-        cell.avatar.image = img
+        cell.image.image = img
         
         return cell
     }
