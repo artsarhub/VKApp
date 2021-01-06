@@ -740,7 +740,7 @@
         <!--Item-->
         <scene sceneID="FzK-gq-cbA">
             <objects>
-                <navigationController id="E9A-gj-5zv" sceneMemberID="viewController">
+                <navigationController id="E9A-gj-5zv" customClass="CustomNavigationController" customModule="Curs2" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="FeR-jm-zS4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rNo-OR-MhB">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
