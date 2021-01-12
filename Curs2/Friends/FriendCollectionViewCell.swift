@@ -9,7 +9,7 @@ import UIKit
 
 class FriendCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var avatar: Avatar!
+    @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var likeControl: LikeControl!
     
     var user: User?

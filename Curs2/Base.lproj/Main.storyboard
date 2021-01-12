@@ -604,27 +604,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="379" height="420"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNr-ku-GjG" customClass="Avatar" customModule="Curs2" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="20" width="339" height="339"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kgl-ed-9Ze">
+                                            <rect key="frame" x="0.0" y="0.0" width="379" height="379"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="dNr-ku-GjG" secondAttribute="height" id="oDg-DO-lzN"/>
+                                                <constraint firstAttribute="width" secondItem="Kgl-ed-9Ze" secondAttribute="height" id="wwQ-o6-uuD"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                    <color key="value" systemColor="labelColor"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                    <real key="value" value="10"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                    <size key="value" width="0.0" height="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacityPercent">
-                                                    <real key="value" value="100"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
+                                        </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ebP-te-hSK" customClass="LikeControl" customModule="Curs2" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="379" width="379" height="41"/>
                                             <subviews>
@@ -650,18 +635,18 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="ebP-te-hSK" firstAttribute="top" secondItem="dNr-ku-GjG" secondAttribute="bottom" constant="20" id="Jfw-Gp-bAE"/>
                                         <constraint firstAttribute="bottom" secondItem="ebP-te-hSK" secondAttribute="bottom" id="R7d-8Z-JdY"/>
-                                        <constraint firstAttribute="trailing" secondItem="dNr-ku-GjG" secondAttribute="trailing" constant="20" id="Syz-oF-WJz"/>
-                                        <constraint firstItem="dNr-ku-GjG" firstAttribute="top" secondItem="bEb-BI-BlZ" secondAttribute="top" constant="20" id="YL2-Sx-ch4"/>
+                                        <constraint firstItem="ebP-te-hSK" firstAttribute="top" secondItem="Kgl-ed-9Ze" secondAttribute="bottom" id="XpZ-tP-Gx4"/>
+                                        <constraint firstAttribute="trailing" secondItem="Kgl-ed-9Ze" secondAttribute="trailing" id="alj-dE-hcO"/>
+                                        <constraint firstItem="Kgl-ed-9Ze" firstAttribute="leading" secondItem="bEb-BI-BlZ" secondAttribute="leading" id="ixY-Gw-Xvg"/>
                                         <constraint firstItem="ebP-te-hSK" firstAttribute="leading" secondItem="bEb-BI-BlZ" secondAttribute="leading" id="t0s-HG-gpZ"/>
-                                        <constraint firstItem="dNr-ku-GjG" firstAttribute="leading" secondItem="bEb-BI-BlZ" secondAttribute="leading" constant="20" id="vpy-ui-0rh"/>
+                                        <constraint firstItem="Kgl-ed-9Ze" firstAttribute="top" secondItem="bEb-BI-BlZ" secondAttribute="top" id="xAT-uf-3S2"/>
                                         <constraint firstAttribute="trailing" secondItem="ebP-te-hSK" secondAttribute="trailing" id="zGo-wr-jj0"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="379" height="420"/>
                                 <connections>
-                                    <outlet property="avatar" destination="dNr-ku-GjG" id="3mq-Yr-hmI"/>
+                                    <outlet property="image" destination="Kgl-ed-9Ze" id="moh-6U-7CE"/>
                                     <outlet property="likeControl" destination="ebP-te-hSK" id="vvM-Cz-eBu"/>
                                     <segue destination="4gx-2m-1wn" kind="presentation" identifier="ShowPhoto" id="hFx-sM-C4m"/>
                                 </connections>
@@ -707,9 +692,11 @@
                         <outlet property="imageView1" destination="WXP-HD-qdA" id="9Mp-1A-Ftm"/>
                         <outlet property="imageView2" destination="6Xx-6m-8vS" id="VYF-7a-rgE"/>
                         <outlet property="imageView3" destination="dLb-k7-evC" id="Ppw-hv-BHU"/>
+                        <segue destination="jMy-X6-vbJ" kind="unwind" identifier="closeFullPhotoView" unwindAction="closeFullPhotoView:" id="OEf-oO-O3r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEs-vt-5pS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="jMy-X6-vbJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4739.7196261682238" y="61.555075593952488"/>
         </scene>
