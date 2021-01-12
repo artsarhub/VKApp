@@ -12,6 +12,8 @@
 		AC2E527B257FFD8F000F4B7D /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2E527A257FFD8F000F4B7D /* FriendCell.swift */; };
 		AC2E528225800AE5000F4B7D /* FriendCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2E528125800AE5000F4B7D /* FriendCollectionViewController.swift */; };
 		AC550D482583DE4F00255250 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC550D472583DE4F00255250 /* Avatar.swift */; };
+		AC8655A125A5E32D000FF568 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8655A025A5E32D000FF568 /* CustomNavigationController.swift */; };
+		AC8655A425A5E45F000FF568 /* CustomNavigationControllerTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8655A325A5E45F000FF568 /* CustomNavigationControllerTransitions.swift */; };
 		AC87B7E425939E5A0057DD1F /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC87B7E325939E5A0057DD1F /* NewsTableViewController.swift */; };
 		AC87B7E825939E890057DD1F /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC87B7E725939E890057DD1F /* NewsTableViewCell.swift */; };
 		AC87B7EB2593A1100057DD1F /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC87B7EA2593A1100057DD1F /* News.swift */; };
@@ -39,6 +41,8 @@
 		AC2E527A257FFD8F000F4B7D /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		AC2E528125800AE5000F4B7D /* FriendCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewController.swift; sourceTree = "<group>"; };
 		AC550D472583DE4F00255250 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
+		AC8655A025A5E32D000FF568 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		AC8655A325A5E45F000FF568 /* CustomNavigationControllerTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationControllerTransitions.swift; sourceTree = "<group>"; };
 		AC87B7E325939E5A0057DD1F /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		AC87B7E725939E890057DD1F /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		AC87B7EA2593A1100057DD1F /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
@@ -96,6 +100,15 @@
 			path = Groups;
 			sourceTree = "<group>";
 		};
+		AC86559F25A5E303000FF568 /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				AC8655A025A5E32D000FF568 /* CustomNavigationController.swift */,
+				AC8655A325A5E45F000FF568 /* CustomNavigationControllerTransitions.swift */,
+			);
+			path = NavigationController;
+			sourceTree = "<group>";
+		};
 		AC87B7E225939E350057DD1F /* News */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +137,7 @@
 		ACA80298257664CC00DC648A /* Curs2 */ = {
 			isa = PBXGroup;
 			children = (
+				AC86559F25A5E303000FF568 /* NavigationController */,
 				AC87B7E225939E350057DD1F /* News */,
 				ACABA140258F59D0009D28BE /* Controls */,
 				ACD311CF25812AEF00A31DB9 /* Model */,
@@ -231,6 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC8655A125A5E32D000FF568 /* CustomNavigationController.swift in Sources */,
 				ACD311E32581317E00A31DB9 /* FriendCollectionViewCell.swift in Sources */,
 				ACA802AF2576737D00DC648A /* LoginFormController.swift in Sources */,
 				ACD311D825812D4F00A31DB9 /* MyGroupsTableViewController.swift in Sources */,
@@ -239,6 +254,7 @@
 				ACA8029A257664CC00DC648A /* AppDelegate.swift in Sources */,
 				AC2E5278257FFD29000F4B7D /* FriendsTableViewController.swift in Sources */,
 				AC87B7EB2593A1100057DD1F /* News.swift in Sources */,
+				AC8655A425A5E45F000FF568 /* CustomNavigationControllerTransitions.swift in Sources */,
 				ACD311DF25812DA700A31DB9 /* AllGroupsTableViewController.swift in Sources */,
 				ACD311D525812B9400A31DB9 /* Group.swift in Sources */,
 				AC87B7E825939E890057DD1F /* NewsTableViewCell.swift in Sources */,
