@@ -6,22 +6,17 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FriendsTableViewController: UITableViewController {
     
     @IBOutlet weak var serachBar: UISearchBar!
     
-    var friends: [User] = [
-        User(name: "Анна",
-             avatar: UIImage(named: "anna")!,
-             album: [UIImage(named: "anna")!, UIImage(named: "alex")!, UIImage(named: "nikita")!]),
-        User(name: "Александр",
-             avatar: UIImage(named: "alex")!,
-             album: [UIImage(named: "anna")!, UIImage(named: "alex")!, UIImage(named: "nikita")!]),
-        User(name: "Никита",
-             avatar: UIImage(named: "nikita")!,
-             album: [UIImage(named: "anna")!, UIImage(named: "alex")!, UIImage(named: "nikita")!]),
-    ]
+    var friends: [User] = [] {
+        didSet {
+            self.filteredFriends = self.friends
+        }
+    }
     var filteredFriends = [User]() {
         didSet {
             self.friendsDict.removeAll()
@@ -40,6 +35,11 @@ class FriendsTableViewController: UITableViewController {
         tableView.register(FriendsSectionHeader.self, forHeaderFooterViewReuseIdentifier: "FriendsSectionHeader")
         
         self.filteredFriends = self.friends
+        
+        let networkService = NetworkService()
+        networkService.loadFriends() { [weak self] friends in
+            self?.friends = friends
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,9 +57,10 @@ class FriendsTableViewController: UITableViewController {
         else { return UITableViewCell() }
         let firstLetter = self.firstLetters[indexPath.section]
         if let users = self.friendsDict[firstLetter] {
-            cell.nameLabel.text = users[indexPath.row].name
-            cell.avatarView.image = users[indexPath.row].avatar
-//            cell.avatarView.addGestureRecognizer(UITapGestureRecognizer(target: cell.avatarView, action: #selector(cell.avatarView.handleTap)))
+            cell.nameLabel.text = "\(users[indexPath.row].firstName) \(users[indexPath.row].lastName)"
+            cell.avatarView.imageURL = users[indexPath.row].photo100
+//            cell.avatarView.image = users[indexPath.row].avatar
+            cell.avatarView.addGestureRecognizer(UITapGestureRecognizer(target: cell.avatarView, action: #selector(cell.avatarView.handleTap)))
         }
         
         return cell
@@ -84,13 +85,14 @@ class FriendsTableViewController: UITableViewController {
         else { return }
         
         let user = self.filteredFriends[indexPath.row]
-        controller.userImages = user.album //.append(user.avatar)
-        controller.userAvatar = user.avatar
+        controller.user = user
+//        controller.userImages = user.album //.append(user.avatar)
+//        controller.userAvatar = user.avatar
     }
     
     private func fillFriendsDict() {
         for user in self.filteredFriends {
-            let dictKey = user.name.first!
+            let dictKey = user.firstName.first!
             if var users = self.friendsDict[dictKey] {
                 users.append(user)
                 self.friendsDict[dictKey] = users
@@ -150,6 +152,6 @@ extension FriendsTableViewController: UISearchBarDelegate {
             return
         }
         
-        self.filteredFriends = self.friends.filter {$0.name.lowercased().contains(text.lowercased())}
+        self.filteredFriends = self.friends.filter {$0.firstName.lowercased().contains(text.lowercased())}
     }
 }

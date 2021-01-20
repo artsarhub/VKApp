@@ -9,11 +9,7 @@ import UIKit
 
 class AllGroupsTableViewController: UITableViewController {
     
-    var allGroups: [Group] = [
-        Group(name: "Новости Москвы", logoImage: UIImage(named: "moscow")!),
-        Group(name: "Я - программист", logoImage: UIImage(named: "proger")!),
-        Group(name: "Bad Comedian", logoImage: UIImage(named: "bad")!),
-    ]
+    var allGroups: [Group] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +27,7 @@ class AllGroupsTableViewController: UITableViewController {
         else { return UITableViewCell() }
         let group = self.allGroups[indexPath.row]
         cell.nameLabel.text = group.name
-        cell.avatar.image = group.logoImage
+//        cell.avatar.imageURL = group.logoImage
 
         return cell
     }

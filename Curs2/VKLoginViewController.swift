@@ -61,7 +61,7 @@ extension VKLoginViewController: WKNavigationDelegate {
                 return dict
             }
         
-        print(params)
+//        print(params)
         
         guard
             let token = params["access_token"],
@@ -75,10 +75,10 @@ extension VKLoginViewController: WKNavigationDelegate {
         Session.shared.token = token
         performSegue(withIdentifier: "LoggedIn", sender: nil)
         
-        NetworkService.loadFriends()
-        NetworkService.loadPhotos()
-        NetworkService.loadGroups()
-        NetworkService.searchGroups(by: "Москва")
+//        NetworkService.loadFriends()
+//        NetworkService.loadPhotos()
+//        NetworkService.loadGroups()
+//        NetworkService.searchGroups(by: "Москва")
         
         decisionHandler(.cancel)
     }

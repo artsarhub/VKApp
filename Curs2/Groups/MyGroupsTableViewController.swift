@@ -11,8 +11,16 @@ class MyGroupsTableViewController: UITableViewController {
     
     @IBOutlet weak var mySerachBar: UISearchBar!
     
-    var myGroups = [Group]()
-    var filteredGroups = [Group]()
+    var myGroups = [Group]() {
+        didSet {
+            self.filteredGroups = self.myGroups
+        }
+    }
+    var filteredGroups = [Group]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         guard
@@ -33,6 +41,11 @@ class MyGroupsTableViewController: UITableViewController {
         self.mySerachBar.delegate = self
         self.filteredGroups = myGroups
         tableView.rowHeight = 60
+        
+        let networkService = NetworkService()
+        networkService.loadGroups() { [weak self] groups in
+            self?.myGroups = groups
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,7 +59,7 @@ class MyGroupsTableViewController: UITableViewController {
         
         let group = self.filteredGroups[indexPath.row]
         cell.nameLabel.text = group.name
-        cell.avatar.image = group.logoImage
+        cell.avatar.imageURL = group.photo100
 
         return cell
     }

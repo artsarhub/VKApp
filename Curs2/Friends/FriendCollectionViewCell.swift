@@ -14,4 +14,8 @@ class FriendCollectionViewCell: UICollectionViewCell {
     
     var user: User?
     
+    func configure(with imageUrl: String) {
+        let url = URL(string: imageUrl)
+        self.image.kf.setImage(with: url)
+    }
 }
