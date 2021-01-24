@@ -49,7 +49,7 @@ class NewsTableViewController: UITableViewController {
         else { return NewsTableViewCell() }
         
         let curNews = self.news[indexPath.row]
-        cell.avatarImage.image = curNews.groupLogo
+//        cell.avatarImage.image = curNews.groupLogo
         cell.groupName.text = curNews.title
         cell.dateLabel.text = curNews.date
         cell.newsImage.image = curNews.images[0]

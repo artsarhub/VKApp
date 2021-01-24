@@ -7,5 +7,7 @@ target 'Curs2' do
 
   # Pods for Curs2
   pod 'Alamofire', '~> 5.2'
+  pod 'SwiftyJSON', '~> 5.0'
+  pod 'Kingfisher', '~> 6.0'
 
 end

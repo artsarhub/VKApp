@@ -9,7 +9,7 @@ import UIKit
 
 @IBDesignable class Avatar: UIView {
     
-    var image: UIImage?
+    var imageURL: String?
     
     @IBInspectable var shadowRadius: CGFloat = 10.0 {
         didSet {
@@ -45,18 +45,20 @@ import UIKit
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        guard let image = self.image else { return }
+        guard let imageURL = self.imageURL else { return }
         
-        let imageView = self.getImageView(rect, image)
+        let imageView = self.getImageView(rect, imageURL)
         self.addSubview(imageView)
         
         let shadowedView = self.getShadowedView(rect)
         self.insertSubview(shadowedView, belowSubview: imageView)
     }
     
-    private func getImageView(_ rect: CGRect, _ image: UIImage) -> UIImageView {
+    private func getImageView(_ rect: CGRect, _ imageURL: String) -> UIImageView {
         let imageView = UIImageView(frame: rect)
-        imageView.image = image
+//        imageView.image = image
+        let url = URL(string: imageURL)!
+        imageView.kf.setImage(with: url)
         imageView.makeCircle()
         return imageView
     }

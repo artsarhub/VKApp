@@ -11,11 +11,23 @@ class FriendCollectionViewController: UICollectionViewController {
     
     @IBAction func closeFullPhotoView(_ unwindSegue: UIStoryboardSegue) {}
     
-    var userImages = [UIImage]()
+    var user: User?
+    var userImages = [String]() {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     var userAvatar: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let networkService = NetworkService()
+        if let userId = self.user?.id {
+            networkService.loadPhotos(for: userId) { [weak self] photos in
+                self?.userImages = photos.compactMap { $0.sizes[0].url }
+            }
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -26,7 +38,7 @@ class FriendCollectionViewController: UICollectionViewController {
             let imageIdexPath = self.collectionView.indexPath(for: cell)
         else { return }
         
-        controller.album = self.userImages
+//        controller.album = self.userImages
         controller.index = imageIdexPath.row
     }
     
@@ -42,7 +54,7 @@ class FriendCollectionViewController: UICollectionViewController {
         
         let img = self.userImages[indexPath.row]
         
-        cell.image.image = img
+        cell.configure(with: img)
         
         return cell
     }
