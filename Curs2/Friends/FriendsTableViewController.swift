@@ -57,8 +57,9 @@ class FriendsTableViewController: UITableViewController {
         else { return UITableViewCell() }
         let firstLetter = self.firstLetters[indexPath.section]
         if let users = self.friendsDict[firstLetter] {
-            cell.nameLabel.text = "\(users[indexPath.row].firstName) \(users[indexPath.row].lastName)"
-            cell.avatarView.imageURL = users[indexPath.row].photo100
+            cell.configure(with: users[indexPath.row])
+//            cell.nameLabel.text = "\(users[indexPath.row].firstName) \(users[indexPath.row].lastName)"
+//            cell.avatarView.imageURL = users[indexPath.row].photo100
 //            cell.avatarView.image = users[indexPath.row].avatar
             cell.avatarView.addGestureRecognizer(UITapGestureRecognizer(target: cell.avatarView, action: #selector(cell.avatarView.handleTap)))
         }
