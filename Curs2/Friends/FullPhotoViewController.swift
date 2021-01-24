@@ -31,7 +31,7 @@ class FullPhotoViewController: UIViewController, UIGestureRecognizerDelegate {
     var rightFramePosition: CGRect!
     var leftFramePosition: CGRect!
     
-    var album =  [UIImage]()
+    var albumURLs = [String]()
     var index: Int = 0
     
     var toLeftAnimation = {}
@@ -56,16 +56,20 @@ class FullPhotoViewController: UIViewController, UIGestureRecognizerDelegate {
         self.rightImageView = imageView2
         self.leftImageView = imageView3
         
-        centerImageView.image = album[index]
-        if index + 1 < album.count {
-            rightImageView.image = album[index + 1]
+        centerImageView.kf.setImage(with: URL(string: self.albumURLs[index]))
+        if index + 1 < albumURLs.count {
+//            rightImageView.image = album[index + 1]
+            self.rightImageView.kf.setImage(with: URL(string: self.albumURLs[index + 1]))
         } else {
-            rightImageView.image = album[0]
+//            rightImageView.image = album[0]
+            self.rightImageView.kf.setImage(with: URL(string: self.albumURLs[0]))
         }
         if index - 1 >= 0 {
-            leftImageView.image = album[index - 1]
+//            leftImageView.image = album[index - 1]
+            self.leftImageView.kf.setImage(with: URL(string: self.albumURLs[index - 1]))
         } else {
-            leftImageView.image = album[album.count - 1]
+//            leftImageView.image = album[album.count - 1]
+            self.leftImageView.kf.setImage(with: URL(string: self.albumURLs[self.albumURLs.count - 1]))
         }
         
         panGR = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
@@ -121,7 +125,7 @@ class FullPhotoViewController: UIViewController, UIGestureRecognizerDelegate {
             rightImageView.alpha  = 1
             rightImageView.transform = .identity
             
-            index = index + 1 < album.count ? index + 1 : 0
+            index = index + 1 < albumURLs.count ? index + 1 : 0
         case .right:
             let tmpIV = centerImageView
             centerImageView = leftImageView
@@ -131,19 +135,23 @@ class FullPhotoViewController: UIViewController, UIGestureRecognizerDelegate {
             leftImageView.alpha  = 1
             leftImageView.transform = .identity
             
-            index = index - 1 >= 0 ? index - 1 : album.count - 1
+            index = index - 1 >= 0 ? index - 1 : albumURLs.count - 1
         }
         
-        if index == album.count-1 {
-            rightImageView.image = album[0]
+        if index == albumURLs.count-1 {
+//            rightImageView.image = album[0]
+            self.rightImageView.kf.setImage(with: URL(string: self.albumURLs[0]))
         } else {
-            rightImageView.image = album[index + 1]
+//            rightImageView.image = album[index + 1]
+            self.rightImageView.kf.setImage(with: URL(string: self.albumURLs[index + 1]))
         }
         
         if index == 0 {
-            leftImageView.image = album[album.count-1]
+//            leftImageView.image = album[album.count-1]
+            self.leftImageView.kf.setImage(with: URL(string: self.albumURLs[self.albumURLs.count - 1]))
         } else {
-            leftImageView.image = album[index - 1]
+//            leftImageView.image = album[index - 1]
+            self.leftImageView.kf.setImage(with: URL(string: self.albumURLs[index - 1]))
         }
         
     }

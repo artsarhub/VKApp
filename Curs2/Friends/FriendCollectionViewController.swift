@@ -38,7 +38,7 @@ class FriendCollectionViewController: UICollectionViewController {
             let imageIdexPath = self.collectionView.indexPath(for: cell)
         else { return }
         
-//        controller.album = self.userImages
+        controller.albumURLs = self.userImages
         controller.index = imageIdexPath.row
     }
     
