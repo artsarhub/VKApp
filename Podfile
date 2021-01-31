@@ -9,5 +9,6 @@ target 'Curs2' do
   pod 'Alamofire', '~> 5.2'
   pod 'SwiftyJSON', '~> 5.0'
   pod 'Kingfisher', '~> 6.0'
+  pod 'RealmSwift', '~> 10.5.1'
 
 end
