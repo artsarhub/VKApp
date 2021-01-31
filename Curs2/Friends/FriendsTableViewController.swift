@@ -7,16 +7,24 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class FriendsTableViewController: UITableViewController {
     
     @IBOutlet weak var serachBar: UISearchBar!
     
-    var friends: [User] = [] {
+    private lazy var friends = try? Realm().objects(User.self) {
         didSet {
-            self.filteredFriends = self.friends
+            self.filteredFriends = self.convertToArray(results: friends)
+            self.tableView.reloadData()
         }
     }
+    
+//    var friends: [User] = [] {
+//        didSet {
+//            self.filteredFriends = self.friends
+//        }
+//    }
     var filteredFriends = [User]() {
         didSet {
             self.friendsDict.removeAll()
@@ -34,11 +42,11 @@ class FriendsTableViewController: UITableViewController {
         tableView.rowHeight = 60
         tableView.register(FriendsSectionHeader.self, forHeaderFooterViewReuseIdentifier: "FriendsSectionHeader")
         
-        self.filteredFriends = self.friends
+        self.filteredFriends = self.convertToArray(results: friends)
         
         let networkService = NetworkService()
         networkService.loadFriends() { [weak self] friends in
-            self?.friends = friends
+//            self?.friends = friends
         }
     }
     
@@ -114,10 +122,17 @@ extension FriendsTableViewController: UISearchBarDelegate {
     
     fileprivate func filterFriends(with text: String) {
         if text.isEmpty {
-            self.filteredFriends = friends
+            self.filteredFriends = self.convertToArray(results: friends)
             return
         }
         
-        self.filteredFriends = self.friends.filter {$0.firstName.lowercased().contains(text.lowercased())}
+        self.filteredFriends = self.convertToArray(results: friends).filter {$0.firstName.lowercased().contains(text.lowercased())}
+    }
+}
+
+extension FriendsTableViewController {
+    private func convertToArray <T>(results: Results<T>?) -> [T] {
+        guard let results = results else { return [] }
+        return Array(results)
     }
 }
