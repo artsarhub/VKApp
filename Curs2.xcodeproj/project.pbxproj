@@ -14,6 +14,7 @@
 		AC2E527B257FFD8F000F4B7D /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2E527A257FFD8F000F4B7D /* FriendCell.swift */; };
 		AC2E528225800AE5000F4B7D /* FriendCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2E528125800AE5000F4B7D /* FriendCollectionViewController.swift */; };
 		AC35038625B31CFE003DE006 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC35038525B31CFE003DE006 /* NetworkService.swift */; };
+		AC54360525C68E49009468E2 /* ReamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC54360425C68E49009468E2 /* ReamService.swift */; };
 		AC550D482583DE4F00255250 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC550D472583DE4F00255250 /* Avatar.swift */; };
 		AC6B102525AE044D00689A64 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6B102425AE044D00689A64 /* Session.swift */; };
 		AC8655A125A5E32D000FF568 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8655A025A5E32D000FF568 /* CustomNavigationController.swift */; };
@@ -49,6 +50,7 @@
 		AC2E527A257FFD8F000F4B7D /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		AC2E528125800AE5000F4B7D /* FriendCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewController.swift; sourceTree = "<group>"; };
 		AC35038525B31CFE003DE006 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		AC54360425C68E49009468E2 /* ReamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReamService.swift; sourceTree = "<group>"; };
 		AC550D472583DE4F00255250 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		AC6B102425AE044D00689A64 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		AC8655A025A5E32D000FF568 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				AC35038525B31CFE003DE006 /* NetworkService.swift */,
+				AC54360425C68E49009468E2 /* ReamService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				AC8655A425A5E45F000FF568 /* CustomNavigationControllerTransitions.swift in Sources */,
 				AC9C28EB25B3226A00A7FC1A /* VKLoginViewController.swift in Sources */,
 				ACD311DF25812DA700A31DB9 /* AllGroupsTableViewController.swift in Sources */,
+				AC54360525C68E49009468E2 /* ReamService.swift in Sources */,
 				ACD311D525812B9400A31DB9 /* Group.swift in Sources */,
 				AC87B7E825939E890057DD1F /* NewsTableViewCell.swift in Sources */,
 				ACABA142258F5A99009D28BE /* LikeControl.swift in Sources */,

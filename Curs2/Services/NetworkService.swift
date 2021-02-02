@@ -31,6 +31,7 @@ class NetworkService {
                     let groupJSONs = json["response"]["items"].arrayValue
                     let groups = groupJSONs.compactMap { Group($0) }
                     completion(groups)
+                    try? RealmServce.save(items: groups)
                 case .failure(let error):
                     print(error)
                 }
@@ -56,6 +57,7 @@ class NetworkService {
                     let friendsJSONList = json["response"]["items"].arrayValue
                     let friends = friendsJSONList.compactMap { User($0) }
                     completion(friends)
+                    try? RealmServce.save(items: friends)
                 case .failure(let error):
                     print(error)
                 }
