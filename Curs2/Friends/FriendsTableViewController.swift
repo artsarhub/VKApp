@@ -156,9 +156,8 @@ extension FriendsTableViewController: UISearchBarDelegate {
             return
         }
         
-//        self.filteredFriends = self.friends?
-//            .filter {$0.firstName.lowercased().contains(text.lowercased())}
-//            .map { $0 }
+        self.filteredFriends = self.friends?
+            .filter("firstName CONTAINS[cd] %@ OR lastName CONTAINS[cd] %@", text, text)
     }
 }
 

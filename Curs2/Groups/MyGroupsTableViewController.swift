@@ -144,6 +144,7 @@ extension MyGroupsTableViewController: UISearchBarDelegate {
             return
         }
 //        self.filteredGroups = self.myGroups.filter {$0.name.lowercased().contains(text.lowercased())}
+        self.filteredGroups = self.myGroups?.filter("name CONTAINS[cd] %@", text)
         self.tableView.reloadData()
     }
 }
