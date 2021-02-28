@@ -9,107 +9,97 @@ import UIKit
 
 class NewsTableViewController: UITableViewController {
     
-    var news: [News] = [
-        News(groupLogo: UIImage(named: "moscow")!,
-             title: "Москва",
-             date: "5 минут назад",
-             text: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.",
-             images: [UIImage(named: "alex")!],
-             likes: 5,
-             views: 300),
-        News(groupLogo: UIImage(named: "proger")!,
-             title: "Я - программист",
-             date: "20 минут назад",
-             text: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.",
-             images: [UIImage(named: "nikita")!],
-             likes: 30,
-             views: 500)
-    ]
+    var posts: [Post]? {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        self.tableView.register(PostHeaderView.self,
+//                                forCellReuseIdentifier: "PostHeaderCell")
+        
+        self.tableView.register(PostHeaderView.nib,
+                                forCellReuseIdentifier: PostHeaderView.reuseIdentifier)
+        self.tableView.register(FooterTableViewCell.nib,
+                                forCellReuseIdentifier: FooterTableViewCell.reuseIdentifier)
 
 //        self.tableView.estimatedRowHeight = 44
 //        self.tableView.rowHeight = UITableView.automaticDimension
+        
+        let networkService = NetworkService()
+        networkService.loadNewsFeed() { posts in
+            self.posts = posts
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.posts?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.news.count
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as? NewsTableViewCell
-        else { return NewsTableViewCell() }
-        
-        let curNews = self.news[indexPath.row]
+//        guard
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as? NewsTableViewCell
+//        else { return NewsTableViewCell() }
+//
+//        let curPost = self.posts?[indexPath.row]
 //        cell.avatarImage.image = curNews.groupLogo
-        cell.groupName.text = curNews.title
-        cell.dateLabel.text = curNews.date
-        cell.newsImage.image = curNews.images[0]
-        cell.textView.text = curNews.text
-        cell.likeControll.likesCount = curNews.likes
-        cell.visitedCount.text = String(curNews.views)
+//        cell.groupName.text = curNews.title
+//        cell.dateLabel.text = curNews.date
+//        cell.newsImage.image = curNews.images[0]
+//        cell.textView.text = curNews.text
+//        cell.likeControll.likesCount = curNews.likes
+//        cell.visitedCount.text = String(curNews.views)
         
-        let ratio = CGFloat(cell.newsImage.image?.size.width ?? 0 / (cell.newsImage.image?.size.height ?? 1))
-        let cropHeight = self.tableView.frame.width / ratio
+//        let ratio = CGFloat(cell.newsImage.image?.size.width ?? 0 / (cell.newsImage.image?.size.height ?? 1))
+//        let cropHeight = self.tableView.frame.width / ratio
+        
+        switch indexPath.row {
+        case 0:
+            guard
+                let post = self.posts?[indexPath.section],
+                let cell = self.tableView.dequeueReusableCell(withIdentifier: PostHeaderView.reuseIdentifier) as? PostHeaderView
+            else { return PostHeaderView() }
+            cell.configure(with: post)
+            return cell
+        case 1:
+            return PostHeaderView()
+        case 2:
+//            guard
+//                let post = self.posts?[indexPath.section],
+//                let cell = self.tableView.dequeueReusableCell(withIdentifier: FooterTableViewCell.reuseIdentifier) as? FooterTableViewCell
+//            else { return FooterTableViewCell() }
+//            cell.configure(with: post)
+//            return cell
+        return FooterTableViewCell()
+        default:
+            return PostHeaderView()
+        }
 
-        return cell
+//        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 0:
+            return 60
+        case 2:
+            return 40
+        default:
+            return 100
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
