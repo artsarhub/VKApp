@@ -125,10 +125,14 @@ class NetworkService {
             .responseData { response in
                 switch response.result {
                 case .success(let data):
-                    let json = JSON(data)
-                    let postJSONs = json["response"]["items"].arrayValue
-                    let posts = postJSONs.compactMap { Post($0) }
-                    completion(posts)
+                    DispatchQueue.global(qos: .utility).async {
+                        let json = JSON(data)
+                        let postJSONs = json["response"]["items"].arrayValue
+                        let posts = postJSONs.compactMap { Post($0) }
+                        DispatchQueue.main.async {
+                            completion(posts)
+                        }
+                    }
                 case .failure(let error):
                     print(error)
                 }

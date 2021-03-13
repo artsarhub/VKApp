@@ -8,12 +8,6 @@
 import UIKit
 
 class PostHeaderView: UITableViewCell {
-    
-    static let reuseIdentifier = String(describing: self)
-    static var nib: UINib {
-        return UINib(nibName: String(describing: self),
-                     bundle: nil)
-    }
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

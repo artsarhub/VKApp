@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,64 +11,76 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="77" id="KGk-i7-Jjw" customClass="FooterTableViewCell" customModule="Curs2" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FooterCell" rowHeight="77" id="KGk-i7-Jjw" customClass="FooterTableViewCell" customModule="Curs2" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="666" height="77"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="666" height="77"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1z-eq-pyf" customClass="LikeControl" customModule="Curs2" customModuleProvider="target">
-                        <rect key="frame" x="10" y="10" width="57" height="57"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="f1z-eq-pyf" secondAttribute="height" id="RJ3-PD-YQr"/>
-                        </constraints>
-                    </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kea-Mo-g1Q">
-                        <rect key="frame" x="77" y="10" width="57" height="57"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="kea-Mo-g1Q" secondAttribute="height" id="ceI-qT-MJZ"/>
-                        </constraints>
-                        <color key="tintColor" systemColor="secondaryLabelColor"/>
-                        <state key="normal" title="0" image="message" catalog="system">
-                            <color key="titleColor" systemColor="secondaryLabelColor"/>
-                        </state>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TrJ-Lq-M7e">
-                        <rect key="frame" x="144" y="10" width="57" height="57"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="TrJ-Lq-M7e" secondAttribute="height" id="s7F-KZ-yRy"/>
-                        </constraints>
-                        <color key="tintColor" systemColor="secondaryLabelColor"/>
-                        <state key="normal" title="0" image="arrowshape.turn.up.right" catalog="system">
-                            <color key="titleColor" systemColor="secondaryLabelColor"/>
-                        </state>
-                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RUf-l5-dNq">
+                        <rect key="frame" x="10" y="13.5" width="145.5" height="50"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1z-eq-pyf" customClass="LikeControl" customModule="Curs2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCL-KL-w6g">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <color key="tintColor" systemColor="systemRedColor"/>
+                                        <state key="normal" title="0">
+                                            <color key="titleColor" systemColor="secondaryLabelColor"/>
+                                            <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="tCL-KL-w6g" secondAttribute="bottom" id="DMN-LY-JaH"/>
+                                    <constraint firstItem="tCL-KL-w6g" firstAttribute="leading" secondItem="f1z-eq-pyf" secondAttribute="leading" id="Ip9-dx-3AI"/>
+                                    <constraint firstItem="tCL-KL-w6g" firstAttribute="top" secondItem="f1z-eq-pyf" secondAttribute="top" id="lnf-GE-fyi"/>
+                                    <constraint firstAttribute="trailing" secondItem="tCL-KL-w6g" secondAttribute="trailing" id="t1Z-8L-rll"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="likeButton" destination="tCL-KL-w6g" id="yZf-lk-Qdh"/>
+                                </connections>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kea-Mo-g1Q">
+                                <rect key="frame" x="60" y="0.0" width="38.5" height="50"/>
+                                <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                <state key="normal" title="0">
+                                    <color key="titleColor" systemColor="secondaryLabelColor"/>
+                                    <imageReference key="image" image="message" catalog="system" symbolScale="large"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TrJ-Lq-M7e">
+                                <rect key="frame" x="108.5" y="0.0" width="37" height="50"/>
+                                <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                <state key="normal" title="0">
+                                    <color key="titleColor" systemColor="secondaryLabelColor"/>
+                                    <imageReference key="image" image="arrowshape.turn.up.right" catalog="system" symbolScale="large"/>
+                                </state>
+                            </button>
+                        </subviews>
+                    </stackView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="72D-PM-qwc">
-                        <rect key="frame" x="599" y="10" width="57" height="57"/>
+                        <rect key="frame" x="560.5" y="10" width="85.5" height="57"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="72D-PM-qwc" secondAttribute="height" id="TLF-Tb-22r"/>
+                            <constraint firstAttribute="width" secondItem="72D-PM-qwc" secondAttribute="height" multiplier="1.5:1" id="oHb-XU-BdX"/>
                         </constraints>
                         <color key="tintColor" systemColor="secondaryLabelColor"/>
-                        <state key="normal" title="0" image="eye" catalog="system">
+                        <state key="normal" title="0">
                             <color key="titleColor" systemColor="secondaryLabelColor"/>
+                            <imageReference key="image" image="eye" catalog="system" symbolScale="large"/>
                         </state>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="kea-Mo-g1Q" secondAttribute="bottom" constant="10" id="BrW-Dy-wZB"/>
-                    <constraint firstAttribute="bottom" secondItem="72D-PM-qwc" secondAttribute="bottom" constant="10" id="IEy-aI-Kde"/>
-                    <constraint firstAttribute="trailing" secondItem="72D-PM-qwc" secondAttribute="trailing" constant="10" id="MW6-ym-mEY"/>
-                    <constraint firstItem="f1z-eq-pyf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Ove-gM-tQb"/>
-                    <constraint firstAttribute="bottom" secondItem="f1z-eq-pyf" secondAttribute="bottom" constant="10" id="XEz-YP-vZe"/>
-                    <constraint firstItem="TrJ-Lq-M7e" firstAttribute="leading" secondItem="kea-Mo-g1Q" secondAttribute="trailing" constant="10" id="eGr-CV-iN4"/>
-                    <constraint firstItem="kea-Mo-g1Q" firstAttribute="leading" secondItem="f1z-eq-pyf" secondAttribute="trailing" constant="10" id="ip9-cq-4V3"/>
-                    <constraint firstItem="f1z-eq-pyf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="jqS-mH-m5n"/>
-                    <constraint firstItem="TrJ-Lq-M7e" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="kLz-DZ-NpU"/>
-                    <constraint firstItem="kea-Mo-g1Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="l2T-n5-eKW"/>
-                    <constraint firstItem="72D-PM-qwc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="wug-wZ-TAp"/>
-                    <constraint firstAttribute="bottom" secondItem="TrJ-Lq-M7e" secondAttribute="bottom" constant="10" id="zWP-ez-gBN"/>
+                    <constraint firstItem="72D-PM-qwc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="5wq-O5-TIP"/>
+                    <constraint firstItem="72D-PM-qwc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="8BI-UF-Tr6"/>
+                    <constraint firstAttribute="trailing" secondItem="72D-PM-qwc" secondAttribute="trailing" constant="20" id="IEv-nQ-6pr"/>
+                    <constraint firstAttribute="bottom" secondItem="72D-PM-qwc" secondAttribute="bottom" constant="10" id="ZcJ-n5-2EM"/>
+                    <constraint firstItem="RUf-l5-dNq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="pBA-s0-FAe"/>
+                    <constraint firstItem="RUf-l5-dNq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="s23-7C-NVs"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -83,12 +96,16 @@
     <resources>
         <image name="arrowshape.turn.up.right" catalog="system" width="128" height="106"/>
         <image name="eye" catalog="system" width="128" height="81"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="message" catalog="system" width="128" height="113"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
