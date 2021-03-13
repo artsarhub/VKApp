@@ -109,4 +109,29 @@ class NetworkService {
                 print("FOUND GROUPS:", json)
             }
     }
+    
+    func loadNewsFeed(_ completion: @escaping ([Post]) -> Void) {
+        let path = "/method/newsfeed.get"
+        
+        let params: Parameters = [
+            "access_token": Session.shared.token,
+            "v": "5.126",
+            "filters": "post"
+        ]
+        
+        AF.request(NetworkService.baseUrl + path,
+                   method: .get,
+                   parameters: params)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    let json = JSON(data)
+                    let postJSONs = json["response"]["items"].arrayValue
+                    let posts = postJSONs.compactMap { Post($0) }
+                    completion(posts)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
 }
