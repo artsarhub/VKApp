@@ -128,7 +128,13 @@ class NetworkService {
                     DispatchQueue.global(qos: .utility).async {
                         let json = JSON(data)
                         let postJSONs = json["response"]["items"].arrayValue
+                        let profileJSONs = json["response"]["profiles"].arrayValue
+                        let groupJSONs = json["response"]["groups"].arrayValue
                         let posts = postJSONs.compactMap { Post($0) }
+                        let profiles = profileJSONs.compactMap { User($0) }
+                        let groups = groupJSONs.compactMap { Group($0) }
+                        try? RealmServce.save(items: profiles)
+                        try? RealmServce.save(items: groups)
                         DispatchQueue.main.async {
                             completion(posts)
                         }
