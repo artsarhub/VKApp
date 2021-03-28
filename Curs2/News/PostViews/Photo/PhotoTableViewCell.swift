@@ -15,8 +15,9 @@ class PhotoTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func configureWith(post: Post) {
-        
+    func configure(with post: Post) {
+        guard let photoURL = URL(string: post.postPhotoURL) else { return }
+        self.photoView.kf.setImage(with: photoURL)
     }
     
 }
