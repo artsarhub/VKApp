@@ -35,5 +35,7 @@ class NewsTableViewCell: UITableViewCell {
         self.groupName.text = ""
         self.dateLabel.text = ""
     }
+    
+    // Для pull request дз
 
 }
