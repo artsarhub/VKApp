@@ -19,6 +19,7 @@
 		AC497F3525FCDA0700247CF5 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC497F3325FCDA0700247CF5 /* PhotoTableViewCell.swift */; };
 		AC497F3625FCDA0700247CF5 /* PhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC497F3425FCDA0700247CF5 /* PhotoTableViewCell.xib */; };
 		AC497F3A25FCDE7B00247CF5 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC497F3925FCDE7B00247CF5 /* Attachment.swift */; };
+		AC521B61260739FC00F4325D /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC521B60260739FC00F4325D /* PhotoService.swift */; };
 		AC54360525C68E49009468E2 /* ReamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC54360425C68E49009468E2 /* ReamService.swift */; };
 		AC550D482583DE4F00255250 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC550D472583DE4F00255250 /* Avatar.swift */; };
 		AC6B102525AE044D00689A64 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6B102425AE044D00689A64 /* Session.swift */; };
@@ -67,6 +68,7 @@
 		AC497F3325FCDA0700247CF5 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
 		AC497F3425FCDA0700247CF5 /* PhotoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoTableViewCell.xib; sourceTree = "<group>"; };
 		AC497F3925FCDE7B00247CF5 /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
+		AC521B60260739FC00F4325D /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		AC54360425C68E49009468E2 /* ReamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReamService.swift; sourceTree = "<group>"; };
 		AC550D472583DE4F00255250 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		AC6B102425AE044D00689A64 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			children = (
 				AC35038525B31CFE003DE006 /* NetworkService.swift */,
 				AC54360425C68E49009468E2 /* ReamService.swift */,
+				AC521B60260739FC00F4325D /* PhotoService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				AC54360525C68E49009468E2 /* ReamService.swift in Sources */,
 				ACD311D525812B9400A31DB9 /* Group.swift in Sources */,
 				AC87B7E825939E890057DD1F /* NewsTableViewCell.swift in Sources */,
+				AC521B61260739FC00F4325D /* PhotoService.swift in Sources */,
 				AC0D7F2B25EEB95100878536 /* PostTableViewCell.swift in Sources */,
 				ACE508E425EBE63100D22E0E /* FooterTableViewCell.swift in Sources */,
 				ACABA142258F5A99009D28BE /* LikeControl.swift in Sources */,
