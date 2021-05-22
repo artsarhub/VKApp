@@ -89,6 +89,11 @@ class NewsTableViewController: UITableViewController {
             cell.configure(with: post)
             return cell
         case 2:
+            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "PhotoCell") as? PhotoTableViewCell
+            else { return PhotoTableViewCell() }
+            cell.configure(with: post)
+            return cell
+        case 3:
             guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "FooterCell") as? FooterTableViewCell
             else { return FooterTableViewCell() }
             cell.configure(with: post)
@@ -100,7 +105,7 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
-        case 0, 2:
+        case 0, 3:
             return 60
         //        case 2:
         //            return 60

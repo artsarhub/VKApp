@@ -18,10 +18,16 @@ class FriendCell: UITableViewCell {
         self.avatarView.imageView.image = nil
     }
     
-    func configure(with user: User) {
+    func configure(with user: User, photoService: PhotoService) {
         self.nameLabel.text = "\(user.firstName) \(user.lastName)"
-        let url = URL(string: user.photo100)
-        self.avatarView.imageView.kf.setImage(with: url)
+//        let url = URL(string: user.photo100)
+        let urlString = user.photo100
+        photoService.getPhoto(urlString: urlString) { [weak self] image in
+            DispatchQueue.main.async {
+                self?.avatarView.imageView.image = image
+            }
+        }
+//        self.avatarView.imageView.kf.setImage(with: url)
     }
 
 }
