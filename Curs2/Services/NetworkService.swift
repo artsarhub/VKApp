@@ -12,7 +12,15 @@ import SwiftyJSON
 class NetworkService {
     private static let baseUrl = "https://api.vk.com"
     
-    func loadGroups(completion: @escaping ([Group]) -> Void) {
+    private let operationQueue: OperationQueue = {
+        let q = OperationQueue()
+        q.maxConcurrentOperationCount = 1
+        q.name = "ru.parsing.operations"
+        q.qualityOfService = .userInitiated
+        return q
+    }()
+    
+    func loadGroups(/*completion: @escaping ([Group]) -> Void*/) {
         let path = "/method/groups.get"
         
         let params: Parameters = [
@@ -29,9 +37,18 @@ class NetworkService {
                 case .success(let data):
                     let json = JSON(data)
                     let groupJSONs = json["response"]["items"].arrayValue
-                    let groups = groupJSONs.compactMap { Group($0) }
-                    completion(groups)
-                    try? RealmServce.save(items: groups)
+                    let groupParsingOperations = groupJSONs.compactMap { GroupParsingOperation($0) }
+                    groupParsingOperations.forEach { groupParsingOperation in
+                        groupParsingOperation.completionBlock = {
+                            if let group = groupParsingOperation.parsedGroup {
+                                try? RealmServce.save(items: [group])
+                            }
+                        }
+                    }
+                    self.operationQueue.addOperations(groupParsingOperations, waitUntilFinished: false)
+//                    let groups = groupJSONs.compactMap { Group($0) }
+//                    completion(groups)
+//                    try? RealmServce.save(items: groups)
                 case .failure(let error):
                     print(error)
                 }
