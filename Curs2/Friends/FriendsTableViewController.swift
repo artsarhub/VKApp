@@ -49,9 +49,16 @@ class FriendsTableViewController: UITableViewController {
         self.friends = try? RealmServce.getBy(type: User.self)
         
         let networkService = NetworkService()
-        networkService.loadFriends() { [weak self] friends in
-            //            self?.friends = friends
-        }
+//        networkService.loadFriends() { [weak self] friends in
+//            //            self?.friends = friends
+//        }
+        networkService.loadFriends()
+            .done { users in
+                try? RealmServce.save(items: users)
+            }
+            .catch { error in
+                print(error)
+            }
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import PromiseKit
 
 class NetworkService {
     private static let baseUrl = "https://api.vk.com"
@@ -55,7 +56,7 @@ class NetworkService {
             }
     }
     
-    func loadFriends(completion: @escaping ([User]) -> Void) {
+    func loadFriends() -> Promise<[User]> {
         let path = "/method/friends.get"
         
         let params: Parameters = [
@@ -64,21 +65,24 @@ class NetworkService {
             "fields": "photo_100"
         ]
         
-        AF.request(NetworkService.baseUrl + path,
-                   method: .get,
-                   parameters: params)
-            .responseData { response in
-                switch response.result {
-                case .success(let data):
-                    let json = JSON(data)
-                    let friendsJSONList = json["response"]["items"].arrayValue
-                    let friends = friendsJSONList.compactMap { User($0) }
-                    completion(friends)
-                    try? RealmServce.save(items: friends)
-                case .failure(let error):
-                    print(error)
+        return Promise.init { resolver in
+            AF.request(NetworkService.baseUrl + path,
+                       method: .get,
+                       parameters: params)
+                .responseData { response in
+                    switch response.result {
+                    case .success(let data):
+                        let json = JSON(data)
+                        let friendsJSONList = json["response"]["items"].arrayValue
+                        let friends = friendsJSONList.compactMap { User($0) }
+//                        completion(friends)
+                        try? RealmServce.save(items: friends)
+                        resolver.fulfill(friends)
+                    case .failure(let error):
+                        resolver.reject(error)
+                    }
                 }
-            }
+        }
     }
     
     func loadPhotos(for userId: Int, completion: @escaping ([Photo]) -> Void) {
