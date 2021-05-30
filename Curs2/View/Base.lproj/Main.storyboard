@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ayz-JL-dT5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ayz-JL-dT5">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -158,54 +159,52 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" id="ZGU-SE-0M3" customClass="GroupCell" customModule="Curs2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="428" height="42.666667938232422"/>
+                                <rect key="frame" x="0.0" y="68.333333969116211" width="428" height="70.666664123535156"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZGU-SE-0M3" id="tIf-2n-6O3">
-                                    <rect key="frame" x="0.0" y="0.0" width="428" height="42.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="70.666664123535156"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWG-Sa-njr">
-                                            <rect key="frame" x="20" y="11.000000000000002" width="42" height="20.666666666666671"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeu-LM-eFW" customClass="Avatar" customModule="Curs2" customModuleProvider="target">
-                                            <rect key="frame" x="365" y="0.0" width="43" height="43"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="yeu-LM-eFW" secondAttribute="height" multiplier="1:1" id="uau-1p-W1E"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacityPercent">
-                                                    <real key="value" value="100"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                    <real key="value" value="5"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                    <size key="value" width="0.0" height="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                    <color key="value" systemColor="labelColor"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PTk-8P-t0f">
+                                            <rect key="frame" x="5" y="4.9999999999999964" width="418" height="60.666666666666657"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QWG-Sa-njr">
+                                                    <rect key="frame" x="0.0" y="0.0" width="209" height="60.666666666666664"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeu-LM-eFW" customClass="Avatar" customModule="Curs2" customModuleProvider="target">
+                                                    <rect key="frame" x="357.33333333333331" y="0.0" width="60.666666666666686" height="60.666666666666664"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="yeu-LM-eFW" secondAttribute="height" multiplier="1:1" id="V57-vj-hNT"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacityPercent">
+                                                            <real key="value" value="100"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                            <size key="value" width="0.0" height="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                            <color key="value" systemColor="labelColor"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="QWG-Sa-njr" firstAttribute="top" secondItem="tIf-2n-6O3" secondAttribute="topMargin" id="24s-Td-UTD"/>
-                                        <constraint firstItem="yeu-LM-eFW" firstAttribute="height" secondItem="QWG-Sa-njr" secondAttribute="height" multiplier="2.08065" id="KEa-TG-muN"/>
-                                        <constraint firstItem="yeu-LM-eFW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QWG-Sa-njr" secondAttribute="trailing" constant="8" symbolic="YES" id="Kit-90-Fpx"/>
-                                        <constraint firstAttribute="trailing" secondItem="yeu-LM-eFW" secondAttribute="trailing" constant="20" id="Z4j-zv-gi4"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="QWG-Sa-njr" secondAttribute="bottom" id="ZYI-n4-mxY"/>
-                                        <constraint firstItem="QWG-Sa-njr" firstAttribute="leading" secondItem="tIf-2n-6O3" secondAttribute="leadingMargin" id="hF6-WO-fdm"/>
-                                        <constraint firstAttribute="bottom" secondItem="yeu-LM-eFW" secondAttribute="bottom" id="nPu-pQ-5Pq"/>
-                                        <constraint firstItem="yeu-LM-eFW" firstAttribute="top" secondItem="tIf-2n-6O3" secondAttribute="top" id="w6g-O2-Bhb"/>
+                                        <constraint firstAttribute="trailing" secondItem="PTk-8P-t0f" secondAttribute="trailing" constant="5" id="AXH-KZ-f68"/>
+                                        <constraint firstAttribute="bottom" secondItem="PTk-8P-t0f" secondAttribute="bottom" constant="5" id="HX5-aQ-b2c"/>
+                                        <constraint firstItem="PTk-8P-t0f" firstAttribute="top" secondItem="tIf-2n-6O3" secondAttribute="top" constant="5" id="VW1-Au-xkz"/>
+                                        <constraint firstItem="PTk-8P-t0f" firstAttribute="leading" secondItem="tIf-2n-6O3" secondAttribute="leading" constant="5" id="dRf-ie-nJA"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <constraints>
-                                    <constraint firstItem="QWG-Sa-njr" firstAttribute="height" secondItem="ZGU-SE-0M3" secondAttribute="height" multiplier="0.484375" id="egB-Yp-hQS"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="avatar" destination="yeu-LM-eFW" id="6Qi-Bz-EID"/>
                                     <outlet property="nameLabel" destination="QWG-Sa-njr" id="OB1-Tw-BKG"/>
@@ -249,7 +248,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" id="huh-Oj-KSj" customClass="GroupCell" customModule="Curs2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="428" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="428" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="huh-Oj-KSj" id="wPe-5U-GuS">
                                     <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
@@ -355,7 +354,7 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" id="RKi-6d-Vew" customClass="FriendCell" customModule="Curs2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="428" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="68.333333969116211" width="428" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RKi-6d-Vew" id="yVS-qH-D4g">
                                     <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>

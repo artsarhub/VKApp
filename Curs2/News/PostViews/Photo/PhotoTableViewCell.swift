@@ -20,4 +20,8 @@ class PhotoTableViewCell: UITableViewCell {
         self.photoView.kf.setImage(with: photoURL)
     }
     
+    override func prepareForReuse() {
+        photoView.image = nil
+    }
+    
 }

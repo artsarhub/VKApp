@@ -25,3 +25,23 @@ class RealmServce {
         try Realm().objects(T.self)
     }
 }
+
+class ThreaSafeRealmService: RealmServce {
+    private let isolationQueue = DispatchQueue(label: "com.vk.realm.write.queue", qos: .default, attributes: .concurrent)
+    
+    func saveSafety <T: Object>(items: [T],
+                                configuration: Realm.Configuration = deleteIfMigration,
+                                update: Realm.UpdatePolicy = .modified) {
+        isolationQueue.async(flags: .barrier) {
+            do {
+                let realm = try Realm(configuration: configuration)
+                print(configuration.fileURL ?? "")
+                try realm.write {
+                    realm.add(items, update: update)
+                }
+            } catch {
+                print("Error in Realm: \(error.localizedDescription)")
+            }
+        }
+    }
+}

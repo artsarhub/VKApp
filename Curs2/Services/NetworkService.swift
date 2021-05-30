@@ -11,6 +11,9 @@ import SwiftyJSON
 import PromiseKit
 
 class NetworkService {
+//    private let realmWriteQueue = DispatchQueue(label: "com.vk.realm.write", qos: .default)
+    private let threadSafeRealmService = ThreaSafeRealmService()
+    
     private static let baseUrl = "https://api.vk.com"
     
     private let operationQueue: OperationQueue = {
@@ -42,7 +45,7 @@ class NetworkService {
                     groupParsingOperations.forEach { groupParsingOperation in
                         groupParsingOperation.completionBlock = {
                             if let group = groupParsingOperation.parsedGroup {
-                                try? RealmServce.save(items: [group])
+                                self.threadSafeRealmService.saveSafety(items: [group])
                             }
                         }
                     }
@@ -146,19 +149,31 @@ class NetworkService {
             .responseData { response in
                 switch response.result {
                 case .success(let data):
-                    let json = JSON(data)
-                    let postJSONs = json["response"]["items"].arrayValue
-                    let profileJSONs = json["response"]["profiles"].arrayValue
-                    let groupJSONs = json["response"]["groups"].arrayValue
-                    DispatchQueue.global().async(qos: .userInitiated) {
-                        let posts = postJSONs.compactMap { Post($0) }
-                        let profiles = profileJSONs.compactMap { User($0) }
-                        let groups = groupJSONs.compactMap { Group($0) }
+                    let parsingGroup = DispatchGroup()
+                    
+                    var posts: [Post] = []
+                    var profiles: [User] = []
+                    var groups: [Group] = []
+                    
+                    DispatchQueue.global().async(group: parsingGroup, qos: .userInitiated) {
+                        let postJSONs = JSON(data)["response"]["items"].arrayValue
+                        posts = postJSONs.compactMap { Post($0) }
+                    }
+                    
+                    DispatchQueue.global().async(group: parsingGroup, qos: .userInitiated) {
+                        let profileJSONs = JSON(data)["response"]["profiles"].arrayValue
+                        profiles = profileJSONs.compactMap { User($0) }
                         try? RealmServce.save(items: profiles)
+                    }
+                    
+                    DispatchQueue.global().async(group: parsingGroup, qos: .userInitiated) {
+                        let groupJSONs = JSON(data)["response"]["groups"].arrayValue
+                        groups = groupJSONs.compactMap { Group($0) }
                         try? RealmServce.save(items: groups)
-                        DispatchQueue.main.async {
-                            completion(posts)
-                        }
+                    }
+                    
+                    parsingGroup.notify(queue: DispatchQueue.main) {
+                        completion(posts)
                     }
                 case .failure(let error):
                     print(error)

@@ -18,9 +18,6 @@ class NewsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        self.tableView.register(PostHeaderView.self,
-        //                                forCellReuseIdentifier: "PostHeaderCell")
-        
         let headerNib = UINib(nibName: "PostHeaderView",
                               bundle: nil)
         self.tableView.register(headerNib,
@@ -54,25 +51,10 @@ class NewsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //        guard
-        //            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as? NewsTableViewCell
-        //        else { return NewsTableViewCell() }
-        //
-        //        let curPost = self.posts?[indexPath.row]
-        //        cell.avatarImage.image = curNews.groupLogo
-        //        cell.groupName.text = curNews.title
-        //        cell.dateLabel.text = curNews.date
-        //        cell.newsImage.image = curNews.images[0]
-        //        cell.textView.text = curNews.text
-        //        cell.likeControll.likesCount = curNews.likes
-        //        cell.visitedCount.text = String(curNews.views)
-        
-        //        let ratio = CGFloat(cell.newsImage.image?.size.width ?? 0 / (cell.newsImage.image?.size.height ?? 1))
-        //        let cropHeight = self.tableView.frame.width / ratio
         
         guard let post = self.posts?[indexPath.section]
         else { return PostTableViewCell() }
@@ -107,26 +89,24 @@ class NewsTableViewController: UITableViewController {
         switch indexPath.row {
         case 0, 3:
             return 60
-        //        case 2:
-        //            return 60
         default:
             return UITableView.automaticDimension
         }
     }
     
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.row {
-        case 0, 2:
-            return 60
-        //        case 2:
-        //            return 60
-        default:
-            return UITableView.automaticDimension
-        }
-    }
+//    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        switch indexPath.row {
+//        case 0, 2:
+//            return 60
+//        //        case 2:
+//        //            return 60
+//        default:
+//            return UITableView.automaticDimension
+//        }
+//    }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: true)
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        self.tableView.deselectRow(at: indexPath, animated: true)
+//    }
     
 }
