@@ -10,5 +10,6 @@ target 'Curs2' do
   pod 'SwiftyJSON', '~> 5.0'
   pod 'Kingfisher', '~> 6.0'
   pod 'RealmSwift', '~> 10.5.1'
+  pod 'PromiseKit', '= 6.13.1'
 
 end

@@ -21,4 +21,8 @@ class PostTableViewCell: UITableViewCell {
         self.postTextLabel.contentMode = .scaleToFill
     }
     
+    override func prepareForReuse() {
+        postTextLabel.text = nil
+    }
+    
 }

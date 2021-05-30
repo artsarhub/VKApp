@@ -56,9 +56,10 @@ class MyGroupsTableViewController: UITableViewController {
         tableView.rowHeight = 60
         
         let networkService = NetworkService()
-        networkService.loadGroups() { [weak self] groups in
-//            self?.myGroups = groups
-        }
+//        networkService.loadGroups() { [weak self] groups in
+////            self?.myGroups = groups
+//        }
+        networkService.loadGroups()
         
         self.myGroups = try? RealmServce.getBy(type: Group.self)
     }
