@@ -9,12 +9,12 @@ import UIKit
 import SwiftyJSON
 import RealmSwift
 
-class Group: Object {
+class Group: Object, VKModel {
     @objc dynamic var id: Int = -1
     @objc dynamic var name: String = ""
     @objc dynamic var photo100: String = ""
     
-    convenience init(_ json: JSON) {
+    required convenience init(_ json: JSON) {
         self.init()
         self.id = json["id"].intValue
         self.name = json["name"].stringValue

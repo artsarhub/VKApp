@@ -13,6 +13,8 @@ class FriendsTableViewController: UITableViewController {
     
     @IBOutlet weak var serachBar: UISearchBar!
     
+    let photoService: PhotoService = PhotoService()
+    
     private var friends: Results<User>? {
         didSet {
             self.filteredFriends = friends
@@ -47,9 +49,16 @@ class FriendsTableViewController: UITableViewController {
         self.friends = try? RealmServce.getBy(type: User.self)
         
         let networkService = NetworkService()
-        networkService.loadFriends() { [weak self] friends in
-            //            self?.friends = friends
-        }
+//        networkService.loadFriends() { [weak self] friends in
+//            //            self?.friends = friends
+//        }
+        networkService.loadFriends()
+            .done { users in
+                try? RealmServce.save(items: users)
+            }
+            .catch { error in
+                print(error)
+            }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -94,7 +103,7 @@ class FriendsTableViewController: UITableViewController {
         
         let firstLetter = self.firstLetters[indexPath.section]
         if let users = self.friendsDict[firstLetter] {
-            cell.configure(with: users[indexPath.row])
+            cell.configure(with: users[indexPath.row], photoService: photoService)
             cell.avatarView.addGestureRecognizer(UITapGestureRecognizer(target: cell.avatarView, action: #selector(cell.avatarView.handleTap)))
         }
         

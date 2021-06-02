@@ -8,11 +8,24 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import PromiseKit
 
 class NetworkService {
+//    private let realmWriteQueue = DispatchQueue(label: "com.vk.realm.write", qos: .default)
+    private let threadSafeRealmService = ThreaSafeRealmService()
+    
     private static let baseUrl = "https://api.vk.com"
     
-    func loadGroups(completion: @escaping ([Group]) -> Void) {
+    private let operationQueue: OperationQueue = {
+        let q = OperationQueue()
+        q.maxConcurrentOperationCount = 1
+        q.name = "ru.parsing.operations"
+        q.qualityOfService = .userInitiated
+        return q
+    }()
+    
+    // TODO - Сохранение в Realm
+    func loadGroups(/*completion: @escaping ([Group]) -> Void*/) {
         let path = "/method/groups.get"
         
         let params: Parameters = [
@@ -29,16 +42,25 @@ class NetworkService {
                 case .success(let data):
                     let json = JSON(data)
                     let groupJSONs = json["response"]["items"].arrayValue
-                    let groups = groupJSONs.compactMap { Group($0) }
-                    completion(groups)
-                    try? RealmServce.save(items: groups)
+                    let groupParsingOperations = groupJSONs.compactMap { GroupParsingOperation($0) }
+                    groupParsingOperations.forEach { groupParsingOperation in
+                        groupParsingOperation.completionBlock = {
+                            if let group = groupParsingOperation.parsedGroup {
+                                self.threadSafeRealmService.saveSafety(items: [group])
+                            }
+                        }
+                    }
+                    self.operationQueue.addOperations(groupParsingOperations, waitUntilFinished: false)
+//                    let groups = groupJSONs.compactMap { Group($0) }
+//                    completion(groups)
+//                    try? RealmServce.save(items: groups)
                 case .failure(let error):
                     print(error)
                 }
             }
     }
     
-    func loadFriends(completion: @escaping ([User]) -> Void) {
+    func loadFriends() -> Promise<[User]> {
         let path = "/method/friends.get"
         
         let params: Parameters = [
@@ -47,21 +69,24 @@ class NetworkService {
             "fields": "photo_100"
         ]
         
-        AF.request(NetworkService.baseUrl + path,
-                   method: .get,
-                   parameters: params)
-            .responseData { response in
-                switch response.result {
-                case .success(let data):
-                    let json = JSON(data)
-                    let friendsJSONList = json["response"]["items"].arrayValue
-                    let friends = friendsJSONList.compactMap { User($0) }
-                    completion(friends)
-                    try? RealmServce.save(items: friends)
-                case .failure(let error):
-                    print(error)
+        return Promise.init { resolver in
+            AF.request(NetworkService.baseUrl + path,
+                       method: .get,
+                       parameters: params)
+                .responseData { response in
+                    switch response.result {
+                    case .success(let data):
+                        let json = JSON(data)
+                        let friendsJSONList = json["response"]["items"].arrayValue
+                        let friends = friendsJSONList.compactMap { User($0) }
+//                        completion(friends)
+                        try? RealmServce.save(items: friends)
+                        resolver.fulfill(friends)
+                    case .failure(let error):
+                        resolver.reject(error)
+                    }
                 }
-            }
+        }
     }
     
     func loadPhotos(for userId: Int, completion: @escaping ([Photo]) -> Void) {
@@ -125,13 +150,31 @@ class NetworkService {
             .responseData { response in
                 switch response.result {
                 case .success(let data):
-                    DispatchQueue.global(qos: .utility).async {
-                        let json = JSON(data)
-                        let postJSONs = json["response"]["items"].arrayValue
-                        let posts = postJSONs.compactMap { Post($0) }
-                        DispatchQueue.main.async {
-                            completion(posts)
-                        }
+                    let parsingGroup = DispatchGroup()
+                    
+                    var posts: [Post] = []
+                    var profiles: [User] = []
+                    var groups: [Group] = []
+                    
+                    DispatchQueue.global().async(group: parsingGroup, qos: .userInitiated) {
+                        let postJSONs = JSON(data)["response"]["items"].arrayValue
+                        posts = postJSONs.compactMap { Post($0) }
+                    }
+                    
+                    DispatchQueue.global().async(group: parsingGroup, qos: .userInitiated) {
+                        let profileJSONs = JSON(data)["response"]["profiles"].arrayValue
+                        profiles = profileJSONs.compactMap { User($0) }
+                        try? RealmServce.save(items: profiles)
+                    }
+                    
+                    DispatchQueue.global().async(group: parsingGroup, qos: .userInitiated) {
+                        let groupJSONs = JSON(data)["response"]["groups"].arrayValue
+                        groups = groupJSONs.compactMap { Group($0) }
+                        try? RealmServce.save(items: groups)
+                    }
+                    
+                    parsingGroup.notify(queue: DispatchQueue.main) {
+                        completion(posts)
                     }
                 case .failure(let error):
                     print(error)
