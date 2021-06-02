@@ -24,6 +24,7 @@ class NetworkService {
         return q
     }()
     
+    // TODO - Сохранение в Realm
     func loadGroups(/*completion: @escaping ([Group]) -> Void*/) {
         let path = "/method/groups.get"
         
