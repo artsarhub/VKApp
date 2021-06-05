@@ -159,23 +159,23 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" id="ZGU-SE-0M3" customClass="GroupCell" customModule="Curs2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="68.333333969116211" width="428" height="70.666664123535156"/>
+                                <rect key="frame" x="0.0" y="68.333333969116211" width="428" height="71.333335876464844"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZGU-SE-0M3" id="tIf-2n-6O3">
-                                    <rect key="frame" x="0.0" y="0.0" width="428" height="70.666664123535156"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="71.333335876464844"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PTk-8P-t0f">
-                                            <rect key="frame" x="5" y="4.9999999999999964" width="418" height="60.666666666666657"/>
+                                            <rect key="frame" x="5" y="5.0000000000000036" width="418" height="61.333333333333343"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QWG-Sa-njr">
-                                                    <rect key="frame" x="0.0" y="0.0" width="209" height="60.666666666666664"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="209" height="61.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeu-LM-eFW" customClass="Avatar" customModule="Curs2" customModuleProvider="target">
-                                                    <rect key="frame" x="357.33333333333331" y="0.0" width="60.666666666666686" height="60.666666666666664"/>
+                                                    <rect key="frame" x="356.66666666666669" y="0.0" width="61.333333333333314" height="61.333333333333336"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="yeu-LM-eFW" secondAttribute="height" multiplier="1:1" id="V57-vj-hNT"/>
@@ -321,7 +321,7 @@
         <scene sceneID="Dux-mZ-Hv8">
             <objects>
                 <tableViewController id="bNO-Hx-WD6" customClass="NewsTableViewController" customModule="Curs2" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FMq-36-B1g">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FMq-36-B1g">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

@@ -21,6 +21,11 @@ class Post {
     var photoWidth = 0
     var photoHeight = 0
     
+    var aspectRatio: CGFloat {
+        guard photoWidth != 0 else { return 0 }
+        return CGFloat(photoHeight) / CGFloat(photoWidth)
+    }
+    
     init(_ json: JSON) {
         self.date = Date(timeIntervalSince1970: TimeInterval(json["date"].doubleValue))
         self.text = json["text"].stringValue

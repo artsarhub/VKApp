@@ -11,8 +11,6 @@ import SwiftyJSON
 import PromiseKit
 
 class NetworkService {
-//    private let realmWriteQueue = DispatchQueue(label: "com.vk.realm.write", qos: .default)
-    private let threadSafeRealmService = ThreaSafeRealmService()
     
     private static let baseUrl = "https://api.vk.com"
     
@@ -24,7 +22,6 @@ class NetworkService {
         return q
     }()
     
-    // TODO - Сохранение в Realm
     func loadGroups(/*completion: @escaping ([Group]) -> Void*/) {
         let path = "/method/groups.get"
         
@@ -46,7 +43,7 @@ class NetworkService {
                     groupParsingOperations.forEach { groupParsingOperation in
                         groupParsingOperation.completionBlock = {
                             if let group = groupParsingOperation.parsedGroup {
-                                self.threadSafeRealmService.saveSafety(items: [group])
+                                RealmService.shared?.save(items: [group])
                             }
                         }
                     }
@@ -80,7 +77,7 @@ class NetworkService {
                         let friendsJSONList = json["response"]["items"].arrayValue
                         let friends = friendsJSONList.compactMap { User($0) }
 //                        completion(friends)
-                        try? RealmServce.save(items: friends)
+//                        try? RealmService.save(items: friends)
                         resolver.fulfill(friends)
                     case .failure(let error):
                         resolver.reject(error)
@@ -135,14 +132,23 @@ class NetworkService {
             }
     }
     
-    func loadNewsFeed(_ completion: @escaping ([Post]) -> Void) {
+    typealias NextFromAnchor = String
+    
+    func loadNewsFeed(startTime: Date? = nil, nextFrom: String? = nil, _ completion: @escaping ([Post], NextFromAnchor) -> Void) {
         let path = "/method/newsfeed.get"
         
-        let params: Parameters = [
+        var params: Parameters = [
             "access_token": Session.shared.token,
             "v": "5.126",
-            "filters": "post"
+            "filters": "post",
+            "count": 20
         ]
+        if let startTime = startTime {
+            params["start_time"] = String(startTime.timeIntervalSince1970 + 1)
+        }
+        if let nextFrom = nextFrom {
+            params["start_from"] = nextFrom
+        }
         
         AF.request(NetworkService.baseUrl + path,
                    method: .get,
@@ -155,26 +161,28 @@ class NetworkService {
                     var posts: [Post] = []
                     var profiles: [User] = []
                     var groups: [Group] = []
+                    let json = JSON(data)
+                    let nextFromAnchor = json["response"]["next_from"].stringValue
                     
                     DispatchQueue.global().async(group: parsingGroup, qos: .userInitiated) {
-                        let postJSONs = JSON(data)["response"]["items"].arrayValue
+                        let postJSONs = json["response"]["items"].arrayValue
                         posts = postJSONs.compactMap { Post($0) }
                     }
                     
                     DispatchQueue.global().async(group: parsingGroup, qos: .userInitiated) {
-                        let profileJSONs = JSON(data)["response"]["profiles"].arrayValue
+                        let profileJSONs = json["response"]["profiles"].arrayValue
                         profiles = profileJSONs.compactMap { User($0) }
-                        try? RealmServce.save(items: profiles)
+                        RealmService.shared?.save(items: profiles)
                     }
                     
                     DispatchQueue.global().async(group: parsingGroup, qos: .userInitiated) {
-                        let groupJSONs = JSON(data)["response"]["groups"].arrayValue
+                        let groupJSONs = json["response"]["groups"].arrayValue
                         groups = groupJSONs.compactMap { Group($0) }
-                        try? RealmServce.save(items: groups)
+                        RealmService.shared?.save(items: groups)
                     }
                     
                     parsingGroup.notify(queue: DispatchQueue.main) {
-                        completion(posts)
+                        completion(posts, nextFromAnchor)
                     }
                 case .failure(let error):
                     print(error)

@@ -36,14 +36,14 @@ class PostHeaderView: UITableViewCell {
         
         if post.sourceId < 0 {
             guard
-                let group = try? RealmServce.getBy(type: Group.self).filter("id == %@", -post.sourceId).first,
+                let group = try? RealmService.shared?.getBy(type: Group.self).filter("id == %@", -post.sourceId).first,
                 let avatarURL = URL(string: group.photo100)
             else { return }
             self.nameLabel.text = group.name
             self.avatarImageView.kf.setImage(with: avatarURL)
         } else {
             guard
-                let user = try? RealmServce.getBy(type: User.self).filter("id == %@", post.sourceId).first,
+                let user = try? RealmService.shared?.getBy(type: User.self).filter("id == %@", post.sourceId).first,
                 let avatarURL = URL(string: user.photo100)
             else { return }
             self.nameLabel.text = "\(user.firstName) \(user.lastName)"

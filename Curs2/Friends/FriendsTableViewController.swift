@@ -15,13 +15,9 @@ class FriendsTableViewController: UITableViewController {
     
     let photoService: PhotoService = PhotoService()
     
-    private var friends: Results<User>? {
-        didSet {
-            self.filteredFriends = friends
-            self.tableView.reloadData()
-        }
-    }
+    private var friends: Results<User>? = try? RealmService.shared?.getBy(type: User.self)
     
+    private let networkService = NetworkService()
     private var notificationToken: NotificationToken?
     
     //    var friends: [User] = [] {
@@ -29,14 +25,14 @@ class FriendsTableViewController: UITableViewController {
     //            self.filteredFriends = self.friends
     //        }
     //    }
-    var filteredFriends: Results<User>? {
-        didSet {
-            self.friendsDict.removeAll()
-            self.firstLetters.removeAll()
-            self.fillFriendsDict()
-            tableView.reloadData()
-        }
-    }
+//    var filteredFriends: Results<User>? {
+//        didSet {
+//            self.friendsDict.removeAll()
+//            self.firstLetters.removeAll()
+//            self.fillFriendsDict()
+//            tableView.reloadData()
+//        }
+//    }
     
     var friendsDict: [Character: [User]] = [:]
     var firstLetters = [Character]()
@@ -46,36 +42,28 @@ class FriendsTableViewController: UITableViewController {
         tableView.rowHeight = 60
         tableView.register(FriendsSectionHeader.self, forHeaderFooterViewReuseIdentifier: "FriendsSectionHeader")
         
-        self.friends = try? RealmServce.getBy(type: User.self)
+        self.friends = try? RealmService.shared?.getBy(type: User.self)
         
-        let networkService = NetworkService()
 //        networkService.loadFriends() { [weak self] friends in
 //            //            self?.friends = friends
 //        }
         networkService.loadFriends()
             .done { users in
-                try? RealmServce.save(items: users)
+                RealmService.shared?.save(items: users)
             }
             .catch { error in
                 print(error)
             }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         self.notificationToken = self.friends?.observe { [weak self] change in
             guard let self = self else { return }
             switch change {
-            case .initial:
-                self.tableView.reloadData()
-            case let .update(_,
-                             deletions,
-                             insertions,
-                             modifications):
-                self.tableView.update(deletions: deletions,
-                                      insertions: insertions,
-                                      modifications: modifications)
+            case .initial, .update:
+                self.reloadTableView(with: self.friends)
             case .error(let error):
                 self.show(error: error)
             }
@@ -136,10 +124,13 @@ class FriendsTableViewController: UITableViewController {
         }
     }
     
-    private func fillFriendsDict() {
-        if let filteredFriends = self.filteredFriends {
+    private func reloadTableView(with friends: Results<User>?) {
+        self.friendsDict.removeAll()
+        self.firstLetters.removeAll()
+        
+        if let filteredFriends = friends {
             for user in filteredFriends {
-                let dictKey = user.firstName.first!
+                guard let dictKey = user.firstName.first else { continue }
                 if var users = self.friendsDict[dictKey] {
                     users.append(user)
                     self.friendsDict[dictKey] = users
@@ -150,6 +141,8 @@ class FriendsTableViewController: UITableViewController {
             }
             self.firstLetters.sort()
         }
+        
+        tableView.reloadData()
     }
     
 }
@@ -160,13 +153,12 @@ extension FriendsTableViewController: UISearchBarDelegate {
     }
     
     fileprivate func filterFriends(with text: String) {
-        if text.isEmpty {
-            self.filteredFriends = self.friends
+        guard !text.isEmpty else {
+            reloadTableView(with: self.friends)
             return
         }
         
-        self.filteredFriends = self.friends?
-            .filter("firstName CONTAINS[cd] %@ OR lastName CONTAINS[cd] %@", text, text)
+        reloadTableView(with:self.friends?.filter("firstName CONTAINS[cd] %@ OR lastName CONTAINS[cd] %@", text, text))
     }
 }
 

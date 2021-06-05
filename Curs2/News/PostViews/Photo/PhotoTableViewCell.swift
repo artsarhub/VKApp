@@ -21,7 +21,8 @@ class PhotoTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
+        
         photoView.image = nil
     }
-    
 }

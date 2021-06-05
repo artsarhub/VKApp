@@ -8,21 +8,39 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var postTextLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    static let horizontalInset: CGFloat = 12
+    static let verticalInset: CGFloat = 8
+    
+    private let postTextLabel = UILabel()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        contentView.addSubview(postTextLabel)
     }
     
-    func configure(with post: Post) {
-        self.postTextLabel.text = post.text
-        self.postTextLabel.numberOfLines = 0
-        self.postTextLabel.contentMode = .scaleToFill
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(with post: Post, font: UIFont) {
+        postTextLabel.text = post.text
+        postTextLabel.numberOfLines = 0
+        postTextLabel.contentMode = .scaleToFill
+        postTextLabel.font = font
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
+        
         postTextLabel.text = nil
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        postTextLabel.frame = contentView.bounds.insetBy(dx: PostTableViewCell.horizontalInset, dy: PostTableViewCell.verticalInset)
     }
     
 }
