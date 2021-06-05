@@ -45,7 +45,7 @@ class MyGroupsTableViewController: UITableViewController {
 //        self.myGroups.append(group)
         var newGroupList = Array(myGroups)
         newGroupList.append(group)
-        try? RealmServce.save(items: newGroupList)
+        RealmService.shared?.save(items: newGroupList)
 //        self.filteredGroups.append(group)
         tableView.reloadData()
     }
@@ -56,11 +56,12 @@ class MyGroupsTableViewController: UITableViewController {
         tableView.rowHeight = 60
         
         let networkService = NetworkService()
-        networkService.loadGroups() { [weak self] groups in
-//            self?.myGroups = groups
-        }
+//        networkService.loadGroups() { [weak self] groups in
+////            self?.myGroups = groups
+//        }
+        networkService.loadGroups()
         
-        self.myGroups = try? RealmServce.getBy(type: Group.self)
+        self.myGroups = try? RealmService.shared?.getBy(type: Group.self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
