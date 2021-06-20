@@ -83,7 +83,8 @@ class NewsTableViewController: UITableViewController {
         case 0:
             guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as? PostHeaderView
             else { return PostHeaderView() }
-            cell.configure(with: post)
+            let postHeaderDisplayItem = PostHeaderDisplayItemsFactory.make(for: post)
+            cell.configure(with: postHeaderDisplayItem)
             return cell
         case 1:
             guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell") as? PostTableViewCell
@@ -141,10 +142,14 @@ class NewsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard indexPath.row == 1 else { return }
-        let currentValue = openedTextCells[indexPath] ?? false
-        openedTextCells[indexPath] = !currentValue
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        switch indexPath.row {
+        case 1:
+            let currentValue = openedTextCells[indexPath] ?? false
+            openedTextCells[indexPath] = !currentValue
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        default:
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
     
 }

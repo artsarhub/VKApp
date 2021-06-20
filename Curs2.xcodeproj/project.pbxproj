@@ -33,6 +33,9 @@
 		AC87B7E425939E5A0057DD1F /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC87B7E325939E5A0057DD1F /* NewsTableViewController.swift */; };
 		AC87B7E825939E890057DD1F /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC87B7E725939E890057DD1F /* NewsTableViewCell.swift */; };
 		AC87B7EB2593A1100057DD1F /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC87B7EA2593A1100057DD1F /* News.swift */; };
+		AC8B89DB267F3EBC00189BAB /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8B89DA267F3EBC00189BAB /* UIColor+Ext.swift */; };
+		AC8B89DF267F4F2C00189BAB /* PostHeaderDisplayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8B89DE267F4F2C00189BAB /* PostHeaderDisplayItem.swift */; };
+		AC8B89E2267F4F6800189BAB /* PostHeaderDisplayItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8B89E1267F4F6800189BAB /* PostHeaderDisplayItemFactory.swift */; };
 		AC9C28EB25B3226A00A7FC1A /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9C28EA25B3226A00A7FC1A /* VKLoginViewController.swift */; };
 		ACA8029A257664CC00DC648A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA80299257664CC00DC648A /* AppDelegate.swift */; };
 		ACA8029C257664CC00DC648A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA8029B257664CC00DC648A /* SceneDelegate.swift */; };
@@ -84,6 +87,9 @@
 		AC87B7E325939E5A0057DD1F /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		AC87B7E725939E890057DD1F /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		AC87B7EA2593A1100057DD1F /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		AC8B89DA267F3EBC00189BAB /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		AC8B89DE267F4F2C00189BAB /* PostHeaderDisplayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderDisplayItem.swift; sourceTree = "<group>"; };
+		AC8B89E1267F4F6800189BAB /* PostHeaderDisplayItemFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderDisplayItemFactory.swift; sourceTree = "<group>"; };
 		AC9C28EA25B3226A00A7FC1A /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
 		ACA80296257664CC00DC648A /* Curs2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Curs2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACA80299257664CC00DC648A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +210,7 @@
 				AC82554E25C9B85F00929CB6 /* UITableView+Ext.swift */,
 				AC82555125C9B9FC00929CB6 /* UIViewController+Ext.swift */,
 				AC82555425C9BBD100929CB6 /* UIImageView+Ext.swift */,
+				AC8B89DA267F3EBC00189BAB /* UIColor+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -227,6 +234,31 @@
 				AC87B7E725939E890057DD1F /* NewsTableViewCell.swift */,
 			);
 			path = News;
+			sourceTree = "<group>";
+		};
+		AC8B89DC267F4E7B00189BAB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				AC8B89E0267F4F3A00189BAB /* Factories */,
+				AC8B89DD267F4E8400189BAB /* DisplayItems */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		AC8B89DD267F4E8400189BAB /* DisplayItems */ = {
+			isa = PBXGroup;
+			children = (
+				AC8B89DE267F4F2C00189BAB /* PostHeaderDisplayItem.swift */,
+			);
+			path = DisplayItems;
+			sourceTree = "<group>";
+		};
+		AC8B89E0267F4F3A00189BAB /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				AC8B89E1267F4F6800189BAB /* PostHeaderDisplayItemFactory.swift */,
+			);
+			path = Factories;
 			sourceTree = "<group>";
 		};
 		AC9C28ED25B3279900A7FC1A /* View */ = {
@@ -259,6 +291,7 @@
 		ACA80298257664CC00DC648A /* Curs2 */ = {
 			isa = PBXGroup;
 			children = (
+				AC8B89DC267F4E7B00189BAB /* Common */,
 				AC1B651926590C8D0027C3C5 /* Operations */,
 				AC82554D25C9B84000929CB6 /* Extensions */,
 				AC35038425B31CE4003DE006 /* Services */,
@@ -463,11 +496,13 @@
 				AC2164FC25972B8000E0B2BF /* LoadingDots.swift in Sources */,
 				ACA8029A257664CC00DC648A /* AppDelegate.swift in Sources */,
 				AC2E5278257FFD29000F4B7D /* FriendsTableViewController.swift in Sources */,
+				AC8B89DF267F4F2C00189BAB /* PostHeaderDisplayItem.swift in Sources */,
 				AC87B7EB2593A1100057DD1F /* News.swift in Sources */,
 				AC8655A425A5E45F000FF568 /* CustomNavigationControllerTransitions.swift in Sources */,
 				AC9C28EB25B3226A00A7FC1A /* VKLoginViewController.swift in Sources */,
 				ACD311DF25812DA700A31DB9 /* AllGroupsTableViewController.swift in Sources */,
 				AC54360525C68E49009468E2 /* ReamService.swift in Sources */,
+				AC8B89E2267F4F6800189BAB /* PostHeaderDisplayItemFactory.swift in Sources */,
 				ACD311D525812B9400A31DB9 /* Group.swift in Sources */,
 				AC87B7E825939E890057DD1F /* NewsTableViewCell.swift in Sources */,
 				AC521B61260739FC00F4325D /* PhotoService.swift in Sources */,
@@ -486,6 +521,7 @@
 				AC2E527B257FFD8F000F4B7D /* FriendCell.swift in Sources */,
 				AC1B651D26590D290027C3C5 /* VKModelProtocol.swift in Sources */,
 				AC6B102525AE044D00689A64 /* Session.swift in Sources */,
+				AC8B89DB267F3EBC00189BAB /* UIColor+Ext.swift in Sources */,
 				ACD311D125812B7D00A31DB9 /* User.swift in Sources */,
 				ACABA146258FBB8E009D28BE /* FriendsSectionHeader.swift in Sources */,
 			);

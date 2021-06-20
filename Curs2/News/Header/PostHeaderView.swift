@@ -31,30 +31,10 @@ class PostHeaderView: UITableViewCell {
         self.dateLabel.text = nil
     }
     
-    func configure(with post: Post) {
-        self.nameLabel.text = "TEST"
-        
-        if post.sourceId < 0 {
-            guard
-                let group = try? RealmService.shared?.getBy(type: Group.self).filter("id == %@", -post.sourceId).first,
-                let avatarURL = URL(string: group.photo100)
-            else { return }
-            self.nameLabel.text = group.name
-            self.avatarImageView.kf.setImage(with: avatarURL)
-        } else {
-            guard
-                let user = try? RealmService.shared?.getBy(type: User.self).filter("id == %@", post.sourceId).first,
-                let avatarURL = URL(string: user.photo100)
-            else { return }
-            self.nameLabel.text = "\(user.firstName) \(user.lastName)"
-            self.avatarImageView.kf.setImage(with: avatarURL)
-        }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = .medium
-        self.dateLabel.text = dateFormatter.string(from: post.date)
-        
-//        self.avatarImageView.image = UIImage(named: "moscow")
+    func configure(with postHeader: PostHeaderDisplayItem) {
+        self.nameLabel.text = postHeader.name
+        self.avatarImageView.kf.setImage(with: postHeader.avatarUrl)
+        self.dateLabel.text = postHeader.dateString
         self.avatarImageView.makeCircle()
     }
     

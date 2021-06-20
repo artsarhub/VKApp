@@ -59,7 +59,7 @@ class RealmService {
         do {
             try realm = Realm()
         } catch {
-            print(error)
+            print("REALM ERROR: \(error)")
             return nil
         }
     }
