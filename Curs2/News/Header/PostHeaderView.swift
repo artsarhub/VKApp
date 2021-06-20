@@ -31,14 +31,10 @@ class PostHeaderView: UITableViewCell {
         self.dateLabel.text = nil
     }
     
-    func configure(with post: Post) {
-        self.nameLabel.text = "TEST"
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = .medium
-        self.dateLabel.text = dateFormatter.string(from: post.date)
-        
-        self.avatarImageView.image = UIImage(named: "moscow")
+    func configure(with postHeader: PostHeaderDisplayItem) {
+        self.nameLabel.text = postHeader.name
+        self.avatarImageView.kf.setImage(with: postHeader.avatarUrl)
+        self.dateLabel.text = postHeader.dateString
         self.avatarImageView.makeCircle()
     }
     
