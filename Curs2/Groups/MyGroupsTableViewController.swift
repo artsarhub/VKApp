@@ -45,7 +45,7 @@ class MyGroupsTableViewController: UITableViewController {
 //        self.myGroups.append(group)
         var newGroupList = Array(myGroups)
         newGroupList.append(group)
-        RealmService.shared?.save(items: newGroupList)
+        RealmService.save(items: newGroupList)
 //        self.filteredGroups.append(group)
         tableView.reloadData()
     }
@@ -61,7 +61,7 @@ class MyGroupsTableViewController: UITableViewController {
 //        }
         networkService.loadGroups()
         
-        self.myGroups = try? RealmService.shared?.getBy(type: Group.self)
+        self.myGroups = try? RealmService.getBy(type: Group.self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -114,9 +114,10 @@ class MyGroupsTableViewController: UITableViewController {
             guard let g = self.filteredGroups?[indexPath.row],
                   let objectToDelete = self.myGroups?.filter("NOT id != %@", g.id)
             else { return }
-            try? Realm().write {
-                try? Realm().delete(objectToDelete)
-            }
+            RealmService.delete(objectToDelete)
+//            try? Realm().write {
+//                try? Realm().delete(objectToDelete)
+//            }
 //            let removed = self.filteredGroups.remove(at: indexPath.row)
 //            if let index = self.convertToArray(results: self.myGroups).firstIndex(of: removed) {
 //                var newGroupList = self.convertToArray(results: self.myGroups)

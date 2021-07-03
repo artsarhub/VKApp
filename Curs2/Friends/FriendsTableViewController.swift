@@ -15,7 +15,7 @@ class FriendsTableViewController: UITableViewController {
     
     let photoService: PhotoService = PhotoService()
     
-    private var friends: Results<User>? = try? RealmService.shared?.getBy(type: User.self)
+    private var friends: Results<User>? = try? RealmService.getBy(type: User.self)
     
     private let networkService = NetworkService()
     private var notificationToken: NotificationToken?
@@ -42,14 +42,14 @@ class FriendsTableViewController: UITableViewController {
         tableView.rowHeight = 60
         tableView.register(FriendsSectionHeader.self, forHeaderFooterViewReuseIdentifier: "FriendsSectionHeader")
         
-        self.friends = try? RealmService.shared?.getBy(type: User.self)
+        self.friends = try? RealmService.getBy(type: User.self)
         
 //        networkService.loadFriends() { [weak self] friends in
 //            //            self?.friends = friends
 //        }
         networkService.loadFriends()
             .done { users in
-                RealmService.shared?.save(items: users)
+                RealmService.save(items: users)
             }
             .catch { error in
                 print(error)

@@ -43,7 +43,7 @@ class NetworkService {
                     groupParsingOperations.forEach { groupParsingOperation in
                         groupParsingOperation.completionBlock = {
                             if let group = groupParsingOperation.parsedGroup {
-                                RealmService.shared?.save(items: [group])
+                                RealmService.save(items: [group])
                             }
                         }
                     }
@@ -172,13 +172,13 @@ class NetworkService {
                     DispatchQueue.global().async(group: parsingGroup, qos: .userInitiated) {
                         let profileJSONs = json["response"]["profiles"].arrayValue
                         profiles = profileJSONs.compactMap { User($0) }
-                        RealmService.shared?.save(items: profiles)
+                        RealmService.save(items: profiles)
                     }
                     
                     DispatchQueue.global().async(group: parsingGroup, qos: .userInitiated) {
                         let groupJSONs = json["response"]["groups"].arrayValue
                         groups = groupJSONs.compactMap { Group($0) }
-                        RealmService.shared?.save(items: groups)
+                        RealmService.save(items: groups)
                     }
                     
                     parsingGroup.notify(queue: DispatchQueue.main) {

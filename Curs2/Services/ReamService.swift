@@ -8,87 +8,56 @@
 import Foundation
 import RealmSwift
 
-//class RealmService {
-//    static let deleteIfMigration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-//    
-//    private static let isolationQueue = DispatchQueue(label: "com.realm.queue", qos: .default)
-//    
-//    static func save <T: Object>(items: [T],
-//                                 configuration: Realm.Configuration = deleteIfMigration,
-//                                 update: Realm.UpdatePolicy = .modified) {
-//        isolationQueue.async {
-//            do {
-//                let realm = try Realm(configuration: configuration)
-//    //            print(configuration.fileURL ?? "")
-//                try realm.write {
-//                    realm.add(items, update: update)
-//                }
-//            } catch {
-//                print(error)
-//            }
-//        }
-//    }
-//    
-//    static func getBy <T: Object>(type: T.Type) throws -> Results<T> {
-//        try isolationQueue.sync {
-//            try Realm().objects(T.self)
-//        }
-//    }
-//    
-//    static func getObject <T: Object, KeyType>(of objectType: T.Type, primaryKey: KeyType) throws -> T? {
-//        try isolationQueue.sync {
-//            try Realm().object(ofType: objectType, forPrimaryKey: primaryKey)
-//        }
-//    }
-//}
-
 class RealmService {
-    private static let deleteIfMigration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-    private static var singleInstance: RealmService?
-    private let realm: Realm
-//    private let isolationQueue = DispatchQueue(label: "com.realm.queue")
+    static let deleteIfMigration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
     
-    static var shared: RealmService? = {
-        if singleInstance == nil {
-            singleInstance = RealmService()
-        }
-        return singleInstance
-    }()
+    private static let isolationQueue = DispatchQueue(label: "com.realm.queue", qos: .default)
     
-    private init?() {
-        do {
-            try realm = Realm()
-        } catch {
-            print("REALM ERROR: \(error)")
-            return nil
-        }
-    }
-    
-    func save <T: Object>(items: [T],
-                          configuration: Realm.Configuration = deleteIfMigration,
-                          update: Realm.UpdatePolicy = .modified) {
-//        isolationQueue.async {
+    static func save <T: Object>(items: [T],
+                                 configuration: Realm.Configuration = deleteIfMigration,
+                                 update: Realm.UpdatePolicy = .modified) {
+        isolationQueue.async {
             do {
                 let realm = try Realm(configuration: configuration)
-    //            print(configuration.fileURL ?? "")
+                //            print(configuration.fileURL ?? "")
                 try realm.write {
                     realm.add(items, update: update)
                 }
             } catch {
                 print(error)
             }
-//        }
+        }
     }
     
-    func getBy <T: Object>(type: T.Type) throws -> Results<T> {
-//        try isolationQueue.sync {
-            try Realm().objects(T.self)
-//        }
+    static func delete <T: Object>(_ object: Results<T>,
+                                   configuration: Realm.Configuration = deleteIfMigration,
+                                   update: Realm.UpdatePolicy = .modified) {
+        isolationQueue.sync {
+            do {
+                let reaml = try Realm(configuration: configuration)
+                try reaml.write {
+                    reaml.delete(object)
+                }
+            } catch {
+                print(error)
+            }
+        }
     }
     
-    func getObject <T: Object, KeyType>(of objectType: T.Type, primaryKey: KeyType) throws -> T? {
-//        try isolationQueue.sync {
-            try Realm().object(ofType: objectType, forPrimaryKey: primaryKey)
-//        }
+    static func getBy <T: Object>(type: T.Type,
+                                  configuration: Realm.Configuration = deleteIfMigration,
+                                  update: Realm.UpdatePolicy = .modified) throws -> Results<T> {
+        try isolationQueue.sync {
+            try Realm(configuration: configuration).objects(T.self)
+        }
+    }
+    
+    static func getObject <T: Object, KeyType>(of objectType: T.Type,
+                                               primaryKey: KeyType,
+                                               configuration: Realm.Configuration = deleteIfMigration,
+                                               update: Realm.UpdatePolicy = .modified) throws -> T? {
+        try isolationQueue.sync {
+            try Realm(configuration: configuration).object(ofType: objectType, forPrimaryKey: primaryKey)
+        }
     }
 }

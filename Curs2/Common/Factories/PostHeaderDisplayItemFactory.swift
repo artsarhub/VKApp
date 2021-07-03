@@ -21,14 +21,14 @@ class PostHeaderDisplayItemsFactory {
         
         if post.sourceId < 0 {
             guard
-                let group = try? RealmService.shared?.getBy(type: Group.self).filter("id == %@", -post.sourceId).first,
+                let group = try? RealmService.getBy(type: Group.self).filter("id == %@", -post.sourceId).first,
                 let unwrappedAvatarURL = URL(string: group.photo100)
             else { return PostHeaderDisplayItem(name: name, avatarUrl: avatarURL, dateString: dateString) }
             name = group.name
             avatarURL = unwrappedAvatarURL
         } else {
             guard
-                let user = try? RealmService.shared?.getBy(type: User.self).filter("id == %@", post.sourceId).first,
+                let user = try? RealmService.getBy(type: User.self).filter("id == %@", post.sourceId).first,
                 let unwrappedAvatarURL = URL(string: user.photo100)
             else { return PostHeaderDisplayItem(name: name, avatarUrl: avatarURL, dateString: dateString) }
             name = "\(user.firstName) \(user.lastName)"
