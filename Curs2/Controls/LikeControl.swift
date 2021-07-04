@@ -24,7 +24,7 @@ class LikeControl: UIControl {
                 self.likeButton.setTitle("\(self.likesCount)", for: .normal)
             }
             let likeImage = self.isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
-            let textColor = self.isLiked ? UIColor.red : UIColor.secondaryLabel
+            let textColor = self.isLiked ? UIColor.likeRed : UIColor.secondaryLabel
             self.likeButton.setImage(likeImage, for: .normal)
             self.likeButton.setTitleColor(textColor, for: .normal)
         }

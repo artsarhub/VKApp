@@ -10,7 +10,16 @@ import Alamofire
 import SwiftyJSON
 import PromiseKit
 
-class NetworkService {
+typealias NextFromAnchor = String
+
+protocol NetworkServiceInterface {
+    func loadGroups()
+    func loadFriends() -> Promise<[User]>
+    func loadPhotos(for userId: Int, completion: @escaping ([Photo]) -> Void)
+    func loadNewsFeed(startTime: Date?, nextFrom: String?, _ completion: @escaping ([Post], NextFromAnchor) -> Void)
+}
+
+class NetworkService: NetworkServiceInterface {
     
     private static let baseUrl = "https://api.vk.com"
     
@@ -131,8 +140,6 @@ class NetworkService {
                 print("FOUND GROUPS:", json)
             }
     }
-    
-    typealias NextFromAnchor = String
     
     func loadNewsFeed(startTime: Date? = nil, nextFrom: String? = nil, _ completion: @escaping ([Post], NextFromAnchor) -> Void) {
         let path = "/method/newsfeed.get"
