@@ -57,6 +57,7 @@
 		ACE508DE25EBA1C600D22E0E /* PostHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACE508DC25EBA1C600D22E0E /* PostHeaderView.xib */; };
 		ACE508E425EBE63100D22E0E /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE508E225EBE63100D22E0E /* FooterTableViewCell.swift */; };
 		ACE508E525EBE63100D22E0E /* FooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACE508E325EBE63100D22E0E /* FooterTableViewCell.xib */; };
+		ACFE68D1269231F000A01D83 /* NetworkServiceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFE68D0269231F000A01D83 /* NetworkServiceProxy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +114,7 @@
 		ACE508DC25EBA1C600D22E0E /* PostHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostHeaderView.xib; sourceTree = "<group>"; };
 		ACE508E225EBE63100D22E0E /* FooterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterTableViewCell.swift; sourceTree = "<group>"; };
 		ACE508E325EBE63100D22E0E /* FooterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterTableViewCell.xib; sourceTree = "<group>"; };
+		ACFE68D0269231F000A01D83 /* NetworkServiceProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProxy.swift; sourceTree = "<group>"; };
 		D90FB6CDADD6DE28325D379F /* Pods_Curs2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Curs2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -188,7 +190,7 @@
 		AC35038425B31CE4003DE006 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				AC35038525B31CFE003DE006 /* NetworkService.swift */,
+				ACFE68D2269234FD00A01D83 /* NetworkService */,
 				AC54360425C68E49009468E2 /* ReamService.swift */,
 				AC521B60260739FC00F4325D /* PhotoService.swift */,
 			);
@@ -355,6 +357,15 @@
 			path = Footer;
 			sourceTree = "<group>";
 		};
+		ACFE68D2269234FD00A01D83 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				AC35038525B31CFE003DE006 /* NetworkService.swift */,
+				ACFE68D0269231F000A01D83 /* NetworkServiceProxy.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
 		EAE2CDAA4B614B9F983B1F18 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -495,6 +506,7 @@
 				AC35038625B31CFE003DE006 /* NetworkService.swift in Sources */,
 				AC2164FC25972B8000E0B2BF /* LoadingDots.swift in Sources */,
 				ACA8029A257664CC00DC648A /* AppDelegate.swift in Sources */,
+				ACFE68D1269231F000A01D83 /* NetworkServiceProxy.swift in Sources */,
 				AC2E5278257FFD29000F4B7D /* FriendsTableViewController.swift in Sources */,
 				AC8B89DF267F4F2C00189BAB /* PostHeaderDisplayItem.swift in Sources */,
 				AC87B7EB2593A1100057DD1F /* News.swift in Sources */,

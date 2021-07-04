@@ -18,6 +18,7 @@ class NewsTableViewController: UITableViewController {
     private var feedNextFromAnchor: String?
     private var openedTextCells: [IndexPath: Bool] = [:]
     private let networkService = NetworkService()
+    private lazy var networkServiceProxy = NetworkServiceProxy(networkService: self.networkService)
     private let textFont = UIFont.systemFont(ofSize: 14)
     
     override func viewDidLoad() {
@@ -41,7 +42,7 @@ class NewsTableViewController: UITableViewController {
         //        self.tableView.estimatedRowHeight = 44
         //        self.tableView.rowHeight = UITableView.automaticDimension
         
-        networkService.loadNewsFeed() { [weak self] posts, nextFromAnchor in
+        networkServiceProxy.loadNewsFeed() { [weak self] posts, nextFromAnchor in
             guard let self = self else { return }
             self.posts = posts
             self.feedNextFromAnchor = nextFromAnchor
@@ -58,7 +59,7 @@ class NewsTableViewController: UITableViewController {
     @objc private func refreshControllPulled() {
         guard let firstPost = posts.first else { self.refreshControl?.endRefreshing(); return }
         
-        networkService.loadNewsFeed(startTime: firstPost.date) { [weak self] posts, nextFromAnchor in
+        networkServiceProxy.loadNewsFeed(startTime: firstPost.date) { [weak self] posts, nextFromAnchor in
             guard let self = self else { return }
             self.posts.insert(contentsOf: posts, at: 0)
             self.refreshControl?.endRefreshing()
@@ -163,7 +164,7 @@ extension NewsTableViewController: UITableViewDataSourcePrefetching {
         else { return }
         
         isNewsLoading = true
-        networkService.loadNewsFeed(nextFrom: feedNextFromAnchor) { [weak self] posts, nextFromAbchor in
+        networkServiceProxy.loadNewsFeed(nextFrom: feedNextFromAnchor) { [weak self] posts, nextFromAbchor in
             guard let self = self else { return }
             self.posts.append(contentsOf: posts)
             self.isNewsLoading = false

@@ -18,6 +18,7 @@ class FriendsTableViewController: UITableViewController {
     private var friends: Results<User>? = try? RealmService.getBy(type: User.self)
     
     private let networkService = NetworkService()
+    private lazy var networkServiceProxy = NetworkServiceProxy(networkService: self.networkService)
     private var notificationToken: NotificationToken?
     
     //    var friends: [User] = [] {
@@ -47,7 +48,7 @@ class FriendsTableViewController: UITableViewController {
 //        networkService.loadFriends() { [weak self] friends in
 //            //            self?.friends = friends
 //        }
-        networkService.loadFriends()
+        networkServiceProxy.loadFriends()
             .done { users in
                 RealmService.save(items: users)
             }

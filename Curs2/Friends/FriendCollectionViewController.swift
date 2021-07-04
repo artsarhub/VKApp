@@ -11,6 +11,9 @@ class FriendCollectionViewController: UICollectionViewController {
     
     @IBAction func closeFullPhotoView(_ unwindSegue: UIStoryboardSegue) {}
     
+    let networkService = NetworkService()
+    private lazy var networkServiceProxy = NetworkServiceProxy(networkService: self.networkService)
+    
     var user: User?
     var userImages = [String]() {
         didSet {
@@ -22,9 +25,8 @@ class FriendCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let networkService = NetworkService()
         if let userId = self.user?.id {
-            networkService.loadPhotos(for: userId) { [weak self] photos in
+            networkServiceProxy.loadPhotos(for: userId) { [weak self] photos in
                 self?.userImages = photos.compactMap { $0.sizes[$0.sizes.count - 1].url }
             }
         }
@@ -43,7 +45,6 @@ class FriendCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return self.userImages.count
     }
 

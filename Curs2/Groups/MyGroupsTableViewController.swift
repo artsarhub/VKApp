@@ -12,6 +12,9 @@ class MyGroupsTableViewController: UITableViewController {
     
     @IBOutlet weak var mySerachBar: UISearchBar!
     
+    private let networkService = NetworkService()
+    private lazy var networkServiceProxy = NetworkServiceProxy(networkService: self.networkService)
+    
     var myGroups: Results<Group>? {
         didSet {
             self.filteredGroups = self.myGroups
@@ -54,12 +57,11 @@ class MyGroupsTableViewController: UITableViewController {
         super.viewDidLoad()
         self.mySerachBar.delegate = self
         tableView.rowHeight = 60
-        
-        let networkService = NetworkService()
+
 //        networkService.loadGroups() { [weak self] groups in
 ////            self?.myGroups = groups
 //        }
-        networkService.loadGroups()
+        networkServiceProxy.loadGroups()
         
         self.myGroups = try? RealmService.getBy(type: Group.self)
     }
